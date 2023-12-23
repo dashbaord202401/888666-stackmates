@@ -1,4 +1,4 @@
-# Mates
+# Client
 
 It is easier to edit or delete than to conceive and create.
 
@@ -6,7 +6,9 @@ Web3 development introduces a lot of new idea and solution stack options.
 
 The aim here is to provide examples that make it easier to decide which stack option best suits.
 
-## Example Apps
+## Examples
+
+Best practice patterns
 
 ```bash
 npx nx serve demo-scaffold-eth --port 3000
@@ -22,7 +24,15 @@ npx nx serve mates
 
 Project
 
-## Running tasks
+## UI/UX
+
+- [v0.dev](https://v0.dev/)
+
+## Web3
+
+[Blockchain Connections](https://updraft.cyfrin.io/courses/foundry/html-fund-me/summary)
+
+## NX
 
 To execute tasks with Nx use the following syntax:
 
@@ -44,7 +54,9 @@ nx run-many -t <target1> <target2> -p <proj1> <proj2>
 
 Targets can be defined in the `package.json` or `projects.json`. Learn more [in the docs](https://nx.dev/core-features/run-tasks).
 
-## Generate code
+### Generate code
+
+TODO: Investigate using with AI Prompts / AIDER
 
 If you use Nx plugins, you can leverage code generators that might come with it.
 
@@ -52,21 +64,23 @@ Run `nx list` to get a list of available plugins and whether they have generator
 
 Learn more about [Nx generators on the docs](https://nx.dev/plugin-features/use-code-generators).
 
-## Apps
+### Apps
 
-Example sponsor project
+Best practice example.
 
 ```bash
 nx g @nx/next:application demo-chainlink-functions --directory=apps/examples/chainlink/functions --dryRun
 ```
 
-## Libs
+### Libs
+
+Todo: Decision tree for Next vs Node
 
 ```bash
 nx g @nx/next:library shared-ui-shadcn --directory libs/shared/ui-shadcn  --dryRun
 ```
 
-## Move
+### Move Projects
 
 ```bash
 nx g mv --project mates --destination apps/project/mates --dryRun
@@ -75,17 +89,6 @@ nx g mv --project mates --destination apps/project/mates --dryRun
 ```bash
 nx g mv --project demo-chainlink-functions apps/examples/chainlink/functions --dryRun --verbose
 ```
-
-## Web3
-
-[Blockchain Connections](https://updraft.cyfrin.io/courses/foundry/html-fund-me/summary)
-
-## UI/UX
-
-- [v0.dev](https://v0.dev/)
-
-
-## NX
 
 ### Editor Integration
 
