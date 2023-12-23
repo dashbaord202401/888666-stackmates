@@ -4,13 +4,11 @@
 - [B](https://github.com/dreamineering/stackmates/tree/main/bc)
 - [C](https://github.com/dreamineering/stackmates/tree/main/client)
 
-## No Moats
+## Convictions
 
-Anyone can build any software product to enhance their custom business model.
+[Convictions:](https://mm.dreamineering.com/docs/value/wisdom/big-picture-convictions) There are no moats! Anyone can build any software solution to enhance their own [custom business model](https://mm.dreamineering.com/docs/business/business-models/) that delivers [real world value](https://mm.dreamineering.com/docs/value).
 
-[Culture builds loyalty](https://mm.dreamineering.com/docs/value/money/tokenomics/tokenomics-games/), loyalty builds liquidity.
-
-Engineer a [tech stack](https://mm.dreamineering.com/docs/engineering/software/sdk/) where each component [flows together](https://mm.dreamineering.com/docs/flow) to optimise [teamwork](https://mm.dreamineering.com/docs/principles/people/community/teamwork) in rapidly [experimenting with ideas](https://mm.dreamineering.com/docs/experiments/) that [distribute value](https://mm.dreamineering.com/docs/value/).
+You are a reflection of the people you spend the most time with. [Culture builds loyalty](https://mm.dreamineering.com/docs/value/money/tokenomics/tokenomics-games/), loyalty builds liquidity.
 
 ## Principles
 
@@ -32,23 +30,27 @@ Flow requires alignment of attention and intention. Start with a clear [picture 
 - [Reflect](https://mm.dreamineering.com/docs/flow/reflect/)
 - [Grow](https://mm.dreamineering.com/docs/flow/grow/)
 
-[Sell better stories](https://mm.dreamineering.com/docs/experiments/dreamineering/) and [practice better habits](https://mm.dreamineering.com/docs/experiments/better-practice/) to drive continuous growth.
+[Sell better stories](https://mm.dreamineering.com/docs/experiments/dreamineering/) and [practice better habits](https://mm.dreamineering.com/docs/experiments/better-practice/) to drive continuous growth from first principles thinking.
 
-## Open Experiments
+## Experiments
+
+[Commit alignment with bets](https://mm.dreamineering.com/docs/experiments/) to drive evolutionary experiments.
 
 - Stackmates: Real Estate Development
 - Better Practice: Life Coaching Cafes
 - Berleytrails: AI&BC Marketing Agency
 
-## Tech Stack
+## Toolkit
 
-Workbooks
+Gather a [toolkit](https://mm.dreamineering.com/docs/engineering/software/sdk/) where components [flows together](https://mm.dreamineering.com/docs/flow) to optimise [teamwork](https://mm.dreamineering.com/docs/principles/people/community/teamwork) in rapidly [evolving ideas](https://mm.dreamineering.com/docs/experiments/) that [distribute value](https://mm.dreamineering.com/docs/value/).
+
+Workbooks:
 
 - [Tech Stack Comparison](https://docs.google.com/spreadsheets/d/1XiA_gfU_TkQXlEqVEiVLUUjKmyAZM3rirlJ5EUjJl9Y/edit#gid=1797190969)
 - [Blockchain Comparison](https://docs.google.com/spreadsheets/d/16pqE_E4FzNbsqn-ACxkYfhCyBg3M9kQGcySUM3zw73M/edit#gid=1322132351)
 - [Web3 Games Comparison](https://docs.google.com/spreadsheets/d/1l74VNspBM_3HjBq0oXZzoe1t-EPhKZPsH6FjRokM7cY/edit#gid=745206562)
 - [Tech Startup Analysis](https://docs.google.com/spreadsheets/d/10zBw2LruDEmkBAA9GFVfBaG3UtkOMItr-44CvIxb1VQ/edit#gid=1021038640)
 
-- [Tech FigJam](https://www.figma.com/file/SR3Xg7a8tElFPLoovsqwUO/technology-stack?type=whiteboard&node-id=260-1322&t=6q447RjvecYVn1fG-4)
+Pictures:
 
-[stackmat.es](https://www.stackmat.es/)
+- [Tech FigJam](https://www.figma.com/file/SR3Xg7a8tElFPLoovsqwUO/technology-stack?type=whiteboard&node-id=260-1322&t=6q447RjvecYVn1fG-4)
