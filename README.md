@@ -10,6 +10,18 @@
 
 You are a reflection of the people you spend the most time with. [Culture builds loyalty](https://mm.dreamineering.com/docs/value/money/tokenomics/tokenomics-games/), loyalty builds liquidity.
 
+AI will kill digital marketing by making everyone experts.
+
+Everyone can be a liquidity provider.
+
+## Questions
+
+What does sustainable success look like?
+
+What [range of capabilities](https://mm.dreamineering.com/docs/principles/people/capabilities/) does each person need to develop in the era of AI and Blockchain?
+
+What [range of capabilities](https://mm.dreamineering.com/docs/principles/people/culture/teamwork) will [successful](https://mm.dreamineering.com/docs/value) organisations require to thrive in business?
+
 ## Principles
 
 [First Principles:](https://mm.dreamineering.com/docs/principles) The hardest problem is [identifying the problem](https://mm.dreamineering.com/docs/principles/problems/problem-identification/) to focus attention on. The second hardest problem is getting people to [align their focus](https://mm.dreamineering.com/docs/value/wisdom/big-picture-intentions) on solving that problem.

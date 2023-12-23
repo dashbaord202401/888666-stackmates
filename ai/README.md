@@ -1,5 +1,12 @@
 # AI
 
-Conviction: [The end of programming is near](https://mm.dreamineering.com/docs/value/wisdom/big-picture-convictions#software)
+Conviction:
 
-AI is only as good as the data it learns from.
+- [The end of programming is near](https://mm.dreamineering.com/docs/value/wisdom/big-picture-convictions#software)
+- AI is only as good as the data it learns from.
+
+## LLMs
+
+Which? When? Why? Risk?
+
+- [mistral.ai](https://docs.mistral.ai/)
