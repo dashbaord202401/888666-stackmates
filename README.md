@@ -1,8 +1,12 @@
-## Stackmat.es
+# Stackmates
 
-- a
-- b
-- c
+- [A](https://github.com/dreamineering/stackmates/tree/main/ai)
+- [B](https://github.com/dreamineering/stackmates/tree/main/bc)
+- [C](https://github.com/dreamineering/stackmates/tree/main/client)
+
+## No Moats
+
+Anyone can build any software product to enhance their custom business model.
 
 [Culture builds loyalty](https://mm.dreamineering.com/docs/value/money/tokenomics/tokenomics-games/), loyalty builds liquidity.
 
