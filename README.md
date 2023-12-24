@@ -54,6 +54,7 @@ Flow requires alignment of attention and intention. Start with a clear [picture 
 - Stackmates: Real Estate Development
 - Better Practice: Life Coaching Cafes
 - Berleytrails: AI&BC Marketing Agency
+- Howzus: Brewery & Social
 
 ## Toolkit
 
