@@ -50,11 +50,12 @@ Flow requires alignment of attention and intention. Start with a clear [picture 
 
 [Commit alignment with bets](https://mm.dreamineering.com/docs/experiments/) to drive evolutionary experiments.
 
-- Dreamineering: Pitch Growth Ideas
-- Stackmates: Real Estate Development
-- Better Practice: Life Coaching Cafes
-- Berleytrails: AI&BC Marketing Agency
-- Howzus: Brewery & Social
+- [Dreamineering](https://mm.dreamineering.com/docs/experiments/experiment-dreamineering/): Pitch Growth Ideas
+- [Stackmates](https://mm.dreamineering.com/docs/experiments/experiment-stackmates/): Real Estate Development
+- [Better Practice](https://mm.dreamineering.com/docs/experiments/better-practice/): Health and Life Coaching Cafes
+- [Berleytrails](https://mm.dreamineering.com/docs/experiments/berleytrails/): AI & BC Marketing Agency
+- [Howzus](https://mm.dreamineering.com/docs/experiments/experiment-howzus/): Brewery & Social
+- [Explorer Game](https://mm.dreamineering.com/docs/experiments/experiment-blockchain-explorer/): Learn about network states through play
 
 ## Toolkit
 
