@@ -1,14 +1,20 @@
 # Stackmates
 
+AI, Blockchain, Client interface.
+
 - [A](https://github.com/dreamineering/stackmates/tree/main/ai)
 - [B](https://github.com/dreamineering/stackmates/tree/main/bc)
 - [C](https://github.com/dreamineering/stackmates/tree/main/client)
 
 ## Convictions
 
-[Convictions:](https://mm.dreamineering.com/docs/value/wisdom/big-picture-convictions) There are no moats! Anyone can build any software solution to enhance their own [custom business model](https://mm.dreamineering.com/docs/business/business-models/) that delivers [real world value](https://mm.dreamineering.com/docs/value).
+There are no moats! Anyone can build any software solution to enhance their own [custom business model](https://mm.dreamineering.com/docs/business/business-models/) that delivers [real world value](https://mm.dreamineering.com/docs/value).
 
 You are a reflection of the people you spend the most time with. [Culture builds loyalty](https://mm.dreamineering.com/docs/value/money/tokenomics/tokenomics-games/), loyalty builds liquidity. You can grow your own way.
+
+Insights derived from data provided by trusted connections is the most valuable resource.
+
+[Convictions:](https://mm.dreamineering.com/docs/value/wisdom/big-picture-convictions)
 
 AI will kill digital marketing by making everyone experts.
 
@@ -18,9 +24,7 @@ Everyone can be a liquidity provider.
 
 What does sustainable success look like?
 
-What [range of capabilities](https://mm.dreamineering.com/docs/principles/people/capabilities/) does each person need to develop in the era of AI and Blockchain?
-
-What [range of capabilities](https://mm.dreamineering.com/docs/principles/people/culture/teamwork) will [successful](https://mm.dreamineering.com/docs/value) organisations require to thrive in business?
+What [range of core capabilities](https://mm.dreamineering.com/docs/principles/people/capabilities/) does each person need to develop in the era of AI and Blockchain? What [range of capabilities](https://mm.dreamineering.com/docs/principles/people/culture/teamwork) will [successful organisations](https://mm.dreamineering.com/docs/value) require to thrive in business?
 
 How long before AI and Blockchain form a positive feedback loops that negate the need for human direction?
 
@@ -50,10 +54,12 @@ Flow requires alignment of attention and intention. Start with a clear [picture 
 
 [Commit alignment with bets](https://mm.dreamineering.com/docs/experiments/) to drive evolutionary experiments.
 
-- Dreamineering: Pitch Growth Ideas
-- Stackmates: Real Estate Development
-- Better Practice: Life Coaching Cafes
-- Berleytrails: AI&BC Marketing Agency
+- [Dreamineering](https://mm.dreamineering.com/docs/experiments/experiment-dreamineering/): Pitch Growth Ideas
+- [Stackmates](https://mm.dreamineering.com/docs/experiments/experiment-stackmates/): Real Estate Development
+- [Better Practice](https://mm.dreamineering.com/docs/experiments/better-practice/): Health and Life Coaching Cafes
+- [Berleytrails](https://mm.dreamineering.com/docs/experiments/berleytrails/): AI & BC Marketing Agency
+- [Howzus](https://mm.dreamineering.com/docs/experiments/experiment-howzus/): Brewery & Social
+- [Explorer Game](https://mm.dreamineering.com/docs/experiments/experiment-blockchain-explorer/): Learn about network states through play
 
 ## Toolkit
 
