@@ -14,7 +14,12 @@ Anyone can build any software solution to enhance their own [custom business mod
 
 Blockchain games will become the most powerful marketing tool.
 
+- [immutable truths](https://mm.dreamineering.com/docs/value/wisdom/big-picture-immutable-truths)
 - [convictions](https://mm.dreamineering.com/docs/value/wisdom/big-picture-convictions)
+- [predictions](https://mm.dreamineering.com/docs/flow/dream/predictions)
+- [intentions](https://mm.dreamineering.com/docs/value/wisdom/big-picture-intentions)
+
+All you see is all there is.
 
 ## Questions
 
