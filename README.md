@@ -1,6 +1,6 @@
 # Stackmates
 
-AI, Blockchain, Client interface.
+AI, Blockchain, Client.
 
 - [A](https://github.com/dreamineering/stackmates/tree/main/ai)
 - [B](https://github.com/dreamineering/stackmates/tree/main/bc)
@@ -8,15 +8,13 @@ AI, Blockchain, Client interface.
 
 ## Convictions
 
-There are no moats! Anyone can build any software solution to enhance their own [custom business model](https://mm.dreamineering.com/docs/business/business-models/) that delivers [real world value](https://mm.dreamineering.com/docs/value).
+You are a reflection of the people you spend the most time with. [Culture builds loyalty](https://mm.dreamineering.com/docs/value/money/tokenomics/tokenomics-games/), loyalty builds liquidity. Insights derived from data provided by trusted connections is the most valuable resource.
 
-You are a reflection of the people you spend the most time with. [Culture builds loyalty](https://mm.dreamineering.com/docs/value/money/tokenomics/tokenomics-games/), loyalty builds liquidity. You can grow your own way.
+Anyone can build any software solution to enhance their own [custom business model](https://mm.dreamineering.com/docs/business/business-models/) that delivers [real world value](https://mm.dreamineering.com/docs/value).
 
-Insights derived from data provided by trusted connections is the most valuable resource.
+Blockchain games will become most powerful marketing tool.
 
-[Convictions:](https://mm.dreamineering.com/docs/value/wisdom/big-picture-convictions)
-
-AI will kill digital marketing by making everyone experts.
+[More convictions](https://mm.dreamineering.com/docs/value/wisdom/big-picture-convictions)
 
 Everyone can be a liquidity provider.
 
