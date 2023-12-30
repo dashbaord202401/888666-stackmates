@@ -6,17 +6,15 @@ AI, Blockchain, Client.
 - [B](https://github.com/dreamineering/stackmates/tree/main/bc)
 - [C](https://github.com/dreamineering/stackmates/tree/main/client)
 
-## Convictions
+## Perspective
 
 You are a reflection of the people you spend the most time with. [Culture builds loyalty](https://mm.dreamineering.com/docs/value/money/tokenomics/tokenomics-games/), loyalty builds liquidity. Insights derived from data provided by trusted connections is the most valuable resource.
 
 Anyone can build any software solution to enhance their own [custom business model](https://mm.dreamineering.com/docs/business/business-models/) that delivers [real world value](https://mm.dreamineering.com/docs/value).
 
-Blockchain games will become most powerful marketing tool.
+Blockchain games will become the most powerful marketing tool.
 
-[More convictions](https://mm.dreamineering.com/docs/value/wisdom/big-picture-convictions)
-
-Everyone can be a liquidity provider.
+- [convictions](https://mm.dreamineering.com/docs/value/wisdom/big-picture-convictions)
 
 ## Questions
 
