@@ -31,17 +31,15 @@ How long before AI and Blockchain form a positive feedback loops that negate the
 
 ## Principles
 
-[First Principles:](https://mm.dreamineering.com/docs/principles) The hardest problem is [identifying the problem](https://mm.dreamineering.com/docs/principles/problems/problem-identification/) to focus attention on. The second hardest problem is getting people to [align their focus](https://mm.dreamineering.com/docs/value/wisdom/big-picture-intentions) on solving that problem.
+Turn [problems](https://mm.dreamineering.com/docs/principles/problems/) into valuable [products](https://mm.dreamineering.com/docs/principles/products/)
 
-- [Problems](https://mm.dreamineering.com/docs/principles/problems/)
 - [Platform](https://mm.dreamineering.com/docs/principles/platform/)
 - [Protocols](https://mm.dreamineering.com/docs/principles/process/)
 - [People](https://mm.dreamineering.com/docs/principles/people/)
-- [Products](https://mm.dreamineering.com/docs/principles/products/)
 
 ## Flow
 
-Flow requires alignment of attention and intention. Start with a clear [picture of success](https://mm.dreamineering.com/docs/business/functions/business-documents/business-financial-docs/financial-doc-discounted-cashflow) then work backwards to establish the [critical path](https://mm.dreamineering.com/docs/business/business-principles/critical-path)
+Alignment of attention and intention.
 
 - [Dream](https://mm.dreamineering.com/docs/flow/dream/)
 - [Commit](https://mm.dreamineering.com/docs/flow/commit/)
@@ -49,7 +47,7 @@ Flow requires alignment of attention and intention. Start with a clear [picture 
 - [Reflect](https://mm.dreamineering.com/docs/flow/reflect/)
 - [Grow](https://mm.dreamineering.com/docs/flow/grow/)
 
-[Sell better stories](https://mm.dreamineering.com/docs/experiments/dreamineering/) and [practice better habits](https://mm.dreamineering.com/docs/experiments/better-practice/) to drive continuous growth from first principles thinking.
+[Sell better stories](https://mm.dreamineering.com/docs/experiments/dreamineering/) by [practicing better habits](https://mm.dreamineering.com/docs/experiments/better-practice/) to create growth.
 
 ## Experiments
 
