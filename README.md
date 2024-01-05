@@ -1,6 +1,6 @@
 # Stackmates
 
-AI, Blockchain, Client.
+[AI](https://github.com/dreamineering/stackmates/tree/main/ai) & [Blockchain](https://github.com/dreamineering/stackmates/tree/main/bc) driven [Connection](https://github.com/dreamineering/stackmates/tree/main/client)
 
 - [A](https://github.com/dreamineering/stackmates/tree/main/ai)
 - [B](https://github.com/dreamineering/stackmates/tree/main/bc)
@@ -47,18 +47,23 @@ Alignment of attention and intention.
 - [Reflect](https://mm.dreamineering.com/docs/flow/reflect/)
 - [Grow](https://mm.dreamineering.com/docs/flow/grow/)
 
-[Sell better stories](https://mm.dreamineering.com/docs/experiments/dreamineering/) by [practicing better habits](https://mm.dreamineering.com/docs/experiments/better-practice/) to create growth.
+[Sell better stories](https://mm.dreamineering.com/docs/business/experiments/dreamineering/) by [practicing better habits](https://mm.dreamineering.com/docs/business/experiments/better-practice/) to create growth.
+
+## Strategy
+
+It is easier to edit or delete than to conceive and create.
+a
 
 ## Experiments
 
 [Commit alignment with bets](https://mm.dreamineering.com/docs/experiments/) to drive evolutionary experiments.
 
-- [Dreamineering](https://mm.dreamineering.com/docs/experiments/experiment-dreamineering/): Pitch Growth Ideas
-- [Stackmates](https://mm.dreamineering.com/docs/experiments/experiment-stackmates/): Real Estate Development
-- [Better Practice](https://mm.dreamineering.com/docs/experiments/better-practice/): Health and Life Coaching Cafes
-- [Berleytrails](https://mm.dreamineering.com/docs/experiments/berleytrails/): AI & BC Marketing Agency
-- [Howzus](https://mm.dreamineering.com/docs/experiments/experiment-howzus/): Brewery & Social
-- [Explorer Game](https://mm.dreamineering.com/docs/experiments/experiment-blockchain-explorer/): Learn about network states through play
+- [Dreamineering](https://mm.dreamineering.com/docs/business/experiments/experiment-dreamineering/): Pitch Growth Ideas
+- [Stackmates](https://mm.dreamineering.com/docs/business/experiments/experiment-stackmates/): Real Estate Development
+- [Better Practice](https://mm.dreamineering.com/docs/business/experiments/better-practice/): Health and Life Coaching Cafes
+- [Berleytrails](https://mm.dreamineering.com/docs/business/experiments/berleytrails/): AI & BC Marketing Agency
+- [Howzus](https://mm.dreamineering.com/docs/business/experiments/experiment-howzus/): Brewery & Social
+- [Blockchain Adventurer](https://mm.dreamineering.com/docs/business/experiments/experiment-blockchain-explorer/): Learn about network states through play
 
 ## Toolkit
 
