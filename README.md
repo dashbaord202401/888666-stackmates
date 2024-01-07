@@ -51,8 +51,9 @@ Alignment of attention and intention.
 
 ## Strategy
 
-It is easier to edit or delete than to conceive and create.
-a
+It is easier to edit or delete than to conceive and create when getting started.
+
+Mastery is being able to delete as much as possible to achieve desired results.
 
 ## Experiments
 
