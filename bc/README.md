@@ -4,7 +4,26 @@ Make it easier to compare architecture and practices of chains side by side to b
 
 ## Convictions
 
-Smart Contracts are only as valuable as the data they can process.
+1. Smart Contracts are only as valuable as the data they can process.
+2. If you have a stack to build a blockchain game you can build anything.
+
+## Data
+
+How do you use protected data to provide unique insights to onchain decision logic?
+
+Compare Chainlink vs Pyth for compare Trust Minimized Services.
+
+- Automation
+- CCIP
+- Feeds
+- Functions
+
+## Gaming
+
+Compare the stacks
+
+- Beam
+- InX
 
 ## Questions
 
@@ -30,6 +49,14 @@ Wallet
 - Safe Transactions
 
 Chains
+
+- Ethereum
+- Solana
+
+Oracles
+
+- Chainlink
+- Pyth
 
 ## Services
 

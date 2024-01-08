@@ -1,28 +1,54 @@
-# Client
+# Connection
 
-It is easier to edit or delete than to conceive and create.
+How will humans interface with technology to get things done?
 
-Web3 development introduces a lot of new idea and solution stack options.
+## Convictions
 
-The aim here is to provide examples that make it easier to decide which stack option best suits.
+Mass Onboarding to blockchain for the greater good requires real human connections.
 
-## Examples
+1. Decentralization doesn't matter until it does.
 
-Best practice patterns
+## Hypothesis
+
+Games will form the glue that connect people to shape culture.
+
+The simplest game is collecting and swaping things.
+
+## Code
+
+Collect example code that demonstrate useful patterns into examples to make it easier to compare alternative tech stack options.
+
+### Examples
+
+Scaffold Eth for quick exploration of ideas.
 
 ```bash
 npx nx serve demo-scaffold-eth --port 3000
 ```
 
-## Project Apps
+### Project Apps
 
-Every protocol/business/game requires a mix marketing sites and apps (desktop & mobile).
+Create hackathon starting point with the assumption that every business/organisation/protocol requires
+
+Account Abstraction signup/login.
+
+1. Marketing Site(s)
+   - Tokenized Loyalty
+2. Domain Problem App
+   - [Prompt Interface](https://github.com/rauchg/next-ai-news)
+   - Mobile Interface (App Store Workaround?)
+
+Backend Interfaces
+
+1. AI / LLMs
+2. Onchain
+3. Traditional Offchain data
+
+Starter
 
 ```bash
 npx nx serve mates
 ```
-
-Project
 
 ## UI/UX
 
