@@ -6,13 +6,16 @@ How will humans interface with technology to get things done?
 
 Mass Onboarding to blockchain for the greater good requires real human connections.
 
-1. Decentralization doesn't matter until it does.
+1. Loyalty is valuable
+2. Decentralization doesn't matter until it does.
+3. Games essential to learning with low stakes price of failure.
+4. Should not have to be crypto geek to get [airdrops](https://twitter.com/ayyyeandy/status/1743733461142175959?t=oRP84LCsN7w8kvAAmxr0mg&s=03)
 
 ## Hypothesis
 
 Games will form the glue that connect people to shape culture.
 
-The simplest game is collecting and swaping things.
+- The simplest game is collecting and swaping things. (Marketing)
 
 ## Code
 
