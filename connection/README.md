@@ -61,6 +61,12 @@ npx nx serve mates
 
 [Blockchain Connections](https://updraft.cyfrin.io/courses/foundry/html-fund-me/summary)
 
+## Todo
+
+Copy over code to build a third place.
+
+- https://github.com/rauchg/next-ai-news
+
 ## NX
 
 To execute tasks with Nx use the following syntax:
