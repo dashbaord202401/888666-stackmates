@@ -7,5 +7,5 @@ export default {
     '^.+\\.[tj]sx?$': ['babel-jest', { presets: ['@nx/next/babel'] }],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../coverage/apps/project/mates',
+  coverageDirectory: '../../../coverage/apps/project/stackmates',
 };
