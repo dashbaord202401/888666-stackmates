@@ -1,14 +1,17 @@
-import { useTheme } from "next-themes"
-import { Bar, BarChart, Line, LineChart, ResponsiveContainer } from "recharts"
+import { useTheme } from 'next-themes';
+import { Bar, BarChart, Line, LineChart, ResponsiveContainer } from 'recharts';
 
-import { useConfig } from "@/hooks/use-config"
+// config
+import { useConfig } from '@/hooks/use-config';
+import { themes } from '@/registry/themes';
+
+// components
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@/registry/default/ui/card"
-import { themes } from "@/registry/themes"
+} from '@mates/shared-ui-shadcn/server';
 
 const data = [
   {
@@ -43,13 +46,13 @@ const data = [
     revenue: 26475,
     subscription: 189,
   },
-]
+];
 
 export function CardsStats() {
-  const { theme: mode } = useTheme()
-  const [config] = useConfig()
+  const { theme: mode } = useTheme();
+  const [config] = useConfig();
 
-  const theme = themes.find((theme) => theme.name === config.theme)
+  const theme = themes.find((theme) => theme.name === config.theme);
 
   return (
     <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-2">
@@ -79,13 +82,13 @@ export function CardsStats() {
                   dataKey="revenue"
                   activeDot={{
                     r: 6,
-                    style: { fill: "var(--theme-primary)", opacity: 0.25 },
+                    style: { fill: 'var(--theme-primary)', opacity: 0.25 },
                   }}
                   style={
                     {
-                      stroke: "var(--theme-primary)",
-                      "--theme-primary": `hsl(${
-                        theme?.cssVars[mode === "dark" ? "dark" : "light"]
+                      stroke: 'var(--theme-primary)',
+                      '--theme-primary': `hsl(${
+                        theme?.cssVars[mode === 'dark' ? 'dark' : 'light']
                           .primary
                       })`,
                     } as React.CSSProperties
@@ -112,10 +115,10 @@ export function CardsStats() {
                   dataKey="subscription"
                   style={
                     {
-                      fill: "var(--theme-primary)",
+                      fill: 'var(--theme-primary)',
                       opacity: 1,
-                      "--theme-primary": `hsl(${
-                        theme?.cssVars[mode === "dark" ? "dark" : "light"]
+                      '--theme-primary': `hsl(${
+                        theme?.cssVars[mode === 'dark' ? 'dark' : 'light']
                           .primary
                       })`,
                     } as React.CSSProperties
@@ -127,5 +130,5 @@ export function CardsStats() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

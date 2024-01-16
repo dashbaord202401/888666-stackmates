@@ -1,10 +1,6 @@
 'use client';
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/registry/default/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@mates/shared-ui-shadcn';
 
 import { Separator } from '@mates/shared-ui-shadcn';
 import { Button } from '@mates/shared-ui-shadcn/server';

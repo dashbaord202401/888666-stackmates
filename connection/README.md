@@ -25,9 +25,17 @@ Create a library of examples to establish patterns and contrast pros and cons of
 
 ### Nextjs Patterns
 
-- [ ] [T3 Apps](https://mm.dreamineering.com/docs/engineering/software/sdk/nextjs/#t3-apps)
-- [ ] [ShadCn](https://mm.dreamineering.com/docs/engineering/software/sdk/nextjs/nextjs-components/libraries/ui-components-shadcn)
-- [ ] [Convex & AI](https://mm.dreamineering.com/docs/engineering/software/sdk/server-dev/backend-convex)
+- [T3 Apps](https://mm.dreamineering.com/docs/engineering/software/sdk/nextjs/#t3-apps)
+- [Shadcn Components](https://mm.dreamineering.com/docs/engineering/software/sdk/nextjs/nextjs-components/libraries/ui-components-shadcn)
+- [Convex & AI](https://mm.dreamineering.com/docs/engineering/software/sdk/server-dev/backend-convex)
+
+Maintain a reference to shadcn
+
+```bash
+npx nx serve shadcn-default --port 3001
+```
+
+T3 & Nextjs 14 Data Access
 
 ### Rollup / Eth Patterns
 
