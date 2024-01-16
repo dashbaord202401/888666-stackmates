@@ -7,9 +7,8 @@ import * as z from 'zod';
 
 import { toast } from '@mates/shared-ui-shadcn';
 import { Checkbox } from '@mates/shared-ui-shadcn';
-import { Switch } from '@mates/shared-ui-shadcn';
-
 import {
+  Switch,
   Form,
   FormControl,
   FormDescription,
@@ -17,8 +16,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@mates/shared-ui-shadcn';
-import { RadioGroup, RadioGroupItem } from '@mates/shared-ui-shadcn';
+  RadioGroup,
+  RadioGroupItem,
+} from '@mates/shared-ui-shadcn/forms';
 
 import { Button } from '@mates/shared-ui-shadcn/server';
 

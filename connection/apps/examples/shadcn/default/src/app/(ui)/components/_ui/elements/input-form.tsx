@@ -1,8 +1,8 @@
 'use client';
 
+import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import * as z from 'zod';
 
 import { toast } from '@mates/shared-ui-shadcn';
 import { Button } from '@mates/shared-ui-shadcn/server';
@@ -14,8 +14,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@mates/shared-ui-shadcn';
-import { Input } from '@mates/shared-ui-shadcn';
+  Input,
+} from '@mates/shared-ui-shadcn/forms';
 
 const FormSchema = z.object({
   username: z.string().min(2, {

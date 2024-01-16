@@ -16,8 +16,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@mates/shared-ui-shadcn';
-import { RadioGroup, RadioGroupItem } from '@mates/shared-ui-shadcn';
+  RadioGroup,
+  RadioGroupItem,
+} from '@mates/shared-ui-shadcn/forms';
 
 import { Button, buttonVariants } from '@mates/shared-ui-shadcn/server';
 

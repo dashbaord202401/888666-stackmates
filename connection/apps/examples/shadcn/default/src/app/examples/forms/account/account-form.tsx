@@ -31,7 +31,7 @@ import {
   FormLabel,
   FormMessage,
   Input,
-} from '@mates/shared-ui-shadcn';
+} from '@mates/shared-ui-shadcn/forms';
 
 const languages = [
   { label: 'English', value: 'en' },

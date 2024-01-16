@@ -9,7 +9,7 @@ import {
   HoverCardTrigger,
   Slider,
 } from '@mates/shared-ui-shadcn';
-import { Label } from '@mates/shared-ui-shadcn';
+import { Label } from '@mates/shared-ui-shadcn/forms';
 
 interface TemperatureSelectorProps {
   defaultValue: SliderProps['defaultValue'];

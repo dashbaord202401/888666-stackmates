@@ -22,7 +22,7 @@ import {
 } from '@mates/shared-ui-shadcn';
 
 import { Button } from '@mates/shared-ui-shadcn/server';
-import { Label } from '@mates/shared-ui-shadcn';
+import { Label } from '@mates/shared-ui-shadcn/forms';
 
 import { useMutationObserver } from '../../../../hooks/use-mutation-observer';
 import { Model, ModelType } from '../data/models';

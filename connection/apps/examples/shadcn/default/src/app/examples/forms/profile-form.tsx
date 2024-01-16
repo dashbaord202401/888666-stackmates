@@ -18,16 +18,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@mates/shared-ui-shadcn';
-import { Input } from '@mates/shared-ui-shadcn';
-import {
+  Input,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@mates/shared-ui-shadcn';
-import { Textarea } from '@mates/shared-ui-shadcn';
+  Textarea,
+} from '@mates/shared-ui-shadcn/forms';
 
 const profileFormSchema = z.object({
   username: z

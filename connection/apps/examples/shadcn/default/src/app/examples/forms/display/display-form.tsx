@@ -16,7 +16,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@mates/shared-ui-shadcn';
+} from '@mates/shared-ui-shadcn/forms';
 
 const items = [
   {

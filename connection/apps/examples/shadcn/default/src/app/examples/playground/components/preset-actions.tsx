@@ -27,11 +27,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@mates/shared-ui-shadcn';
-import { Switch } from '@mates/shared-ui-shadcn';
 import { toast } from '@mates/shared-ui-shadcn';
 
 import { Button } from '@mates/shared-ui-shadcn/server';
-import { Label } from '@mates/shared-ui-shadcn';
+import { Label, Switch } from '@mates/shared-ui-shadcn/forms';
 
 export function PresetActions() {
   const [open, setIsOpen] = React.useState(false);

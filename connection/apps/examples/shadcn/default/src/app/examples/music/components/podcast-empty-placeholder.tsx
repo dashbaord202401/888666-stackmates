@@ -9,8 +9,7 @@ import {
   DialogTrigger,
 } from '@mates/shared-ui-shadcn';
 
-import { Input } from '@mates/shared-ui-shadcn';
-import { Label } from '@mates/shared-ui-shadcn';
+import { Input, Label } from '@mates/shared-ui-shadcn/forms';
 
 export function PodcastEmptyPlaceholder() {
   return (

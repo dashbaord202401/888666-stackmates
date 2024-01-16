@@ -5,7 +5,7 @@ import * as React from 'react';
 import { cn } from '@mates/shared-utils/server';
 
 import { Button } from '@mates/shared-ui-shadcn/server';
-import { Input, Label } from '@mates/shared-ui-shadcn';
+import { Input, Label } from '@mates/shared-ui-shadcn/forms';
 
 import { Icons } from '../../../_components/icons';
 
