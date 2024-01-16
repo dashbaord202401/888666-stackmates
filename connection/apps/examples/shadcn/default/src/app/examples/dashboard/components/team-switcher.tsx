@@ -35,15 +35,15 @@ import {
 } from '@mates/shared-ui-shadcn';
 import { Button } from '@mates/shared-ui-shadcn/server';
 
-import { Input } from '@mates/shared-ui-shadcn';
-import { Label } from '@mates/shared-ui-shadcn';
 import {
+  Input,
+  Label,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@mates/shared-ui-shadcn';
+} from '@mates/shared-ui-shadcn/forms';
 
 const groups = [
   {

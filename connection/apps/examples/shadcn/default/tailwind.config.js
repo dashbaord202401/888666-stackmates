@@ -3,15 +3,14 @@ const { join } = require('path');
 
 const { fontFamily } = require('tailwindcss/defaultTheme');
 
-// const defaultTheme = require('tailwindcss/defaultTheme');
-
-// /** @type {import('tailwindcss').Config} */
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   presets: [require('../../../../tailwind-workspace-preset.js')],
-  // content: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
   content: [
-    join(__dirname, 'src/app/**/*.{js,ts,jsx,tsx}'),
-    join(__dirname, 'src/components/**/*.{js,ts,jsx,tsx}'),
+    join(
+      __dirname,
+      '{src,app,components}/**/*!(*.stories!*.spec).{ts,tsx,html}'
+    ),
     ...createGlobPatternsForDependencies(__dirname),
   ],
   darkMode: ['class'],

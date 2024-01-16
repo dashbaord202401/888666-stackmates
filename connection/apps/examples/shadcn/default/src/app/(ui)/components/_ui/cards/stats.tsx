@@ -2,7 +2,7 @@ import { useTheme } from 'next-themes';
 import { Bar, BarChart, Line, LineChart, ResponsiveContainer } from 'recharts';
 
 // config
-import { useConfig } from '@/hooks/use-config';
+import { useConfig } from '../../../../../hooks/use-config';
 import { themes } from '@/registry/themes';
 
 // components

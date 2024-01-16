@@ -1,7 +1,7 @@
 import { useTheme } from 'next-themes';
 import { Line, LineChart, ResponsiveContainer, Tooltip } from 'recharts';
 
-import { useConfig } from '@/hooks/use-config';
+import { useConfig } from '../../../../../hooks/use-config';
 import { themes } from '@/registry/themes';
 import {
   Card,

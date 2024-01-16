@@ -22,6 +22,7 @@
         "libs/shared/ui-scaffold-eth/src/server.ts"
       ],
       "@mates/shared-ui-shadcn": ["libs/shared/ui-shadcn/src/index.ts"],
+      "@mates/shared-ui-shadcn/forms": ["libs/shared/ui-shadcn/src/forms.ts"],
       "@mates/shared-ui-shadcn/server": ["libs/shared/ui-shadcn/src/server.ts"],
       "@mates/shared-utils": ["libs/shared/utils/src/index.ts"],
       "@mates/shared-utils/server": ["libs/shared/utils/src/server.ts"],

@@ -2,6 +2,6 @@
 
 This library was generated with [Nx](https://nx.dev).
 
-## Running unit tests
+## Todo
 
-Run `nx test shared-ui-shadcn` to execute the unit tests via [Jest](https://jestjs.io).
+- [ ] Dialog
