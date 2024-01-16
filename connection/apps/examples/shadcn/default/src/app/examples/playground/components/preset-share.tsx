@@ -1,8 +1,12 @@
 import { CopyIcon } from '@radix-ui/react-icons';
 
-import { Popover, PopoverContent, PopoverTrigger } from '@shared/ui';
-import { Button } from '@shared/ui/rsc';
-import { Input, Label } from '@shared/ui/forms';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@mates/shared-ui-shadcn';
+import { Button } from '@mates/shared-ui-shadcn/server';
+import { Input, Label } from '@mates/shared-ui-shadcn';
 
 export function PresetShare() {
   return (

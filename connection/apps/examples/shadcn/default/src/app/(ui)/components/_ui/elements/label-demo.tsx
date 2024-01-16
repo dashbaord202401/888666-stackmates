@@ -1,5 +1,5 @@
-import { Checkbox } from '@shared/ui';
-import { Label } from '@shared/ui/forms';
+import { Checkbox } from '@mates/shared-ui-shadcn';
+import { Label } from '@mates/shared-ui-shadcn';
 
 export default function LabelDemo() {
   return (

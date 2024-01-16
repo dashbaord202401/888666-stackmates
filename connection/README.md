@@ -27,7 +27,7 @@ Create a library of examples to establish patterns and contrast pros and cons of
 
 - [ ] [T3 Apps](https://mm.dreamineering.com/docs/engineering/software/sdk/nextjs/#t3-apps)
 - [ ] [ShadCn](https://mm.dreamineering.com/docs/engineering/software/sdk/nextjs/nextjs-components/libraries/ui-components-shadcn)
-- [ ] Vercel AI
+- [ ] [Convex & AI](https://mm.dreamineering.com/docs/engineering/software/sdk/server-dev/backend-convex)
 
 ### Rollup / Eth Patterns
 
@@ -72,12 +72,6 @@ npx nx serve mates
 ## Web3
 
 [Blockchain Connections](https://updraft.cyfrin.io/courses/foundry/html-fund-me/summary)
-
-## Todo
-
-Copy over code to build a third place.
-
-- https://github.com/rauchg/next-ai-news
 
 ## NX
 

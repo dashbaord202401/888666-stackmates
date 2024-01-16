@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
-import { buttonVariants } from '@shared/ui/rsc';
+import { buttonVariants } from '@mates/shared-ui-shadcn/server';
 
 import { CommandMenu } from './command-menu';
 import { Icons } from './icons';

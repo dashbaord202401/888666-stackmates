@@ -1,25 +1,25 @@
 'use client';
 
-import { Separator } from '@shared/ui';
-import { Avatar, AvatarFallback, AvatarImage } from '@shared/ui';
+import { Separator } from '@mates/shared-ui-shadcn';
+import { Avatar, AvatarFallback, AvatarImage } from '@mates/shared-ui-shadcn';
 
-import { Button } from '@shared/ui/rsc';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@shared/ui/rsc';
+} from '@mates/shared-ui-shadcn/server';
 
-import { Input } from '@shared/ui/forms';
+import { Input } from '@mates/shared-ui-shadcn';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@shared/ui/forms';
+} from '@mates/shared-ui-shadcn';
 
 export function DemoShareDocument() {
   return (

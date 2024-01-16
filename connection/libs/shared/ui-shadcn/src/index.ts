@@ -24,9 +24,17 @@ export * from './shadcn/scroll-area';
 export * from './shadcn/separator';
 export * from './shadcn/sheet';
 export * from './shadcn/slider';
-export * from './shadcn/switch';
 export * from './shadcn/tabs';
 export * from './shadcn/toggle';
 export * from './shadcn/toast';
 export * from './shadcn/toaster';
 export * from './shadcn/tooltip';
+
+export * from './shadcn/forms/form';
+
+export * from './shadcn/forms/input';
+export * from './shadcn/forms/label';
+export * from './shadcn/forms/radio-group';
+export * from './shadcn/forms/select';
+export * from './shadcn/forms/switch';
+export * from './shadcn/forms/textarea';

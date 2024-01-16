@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@shared/ui';
+import { Avatar, AvatarFallback, AvatarImage } from '@mates/shared-ui-shadcn';
 
 export default function AvatarDemo() {
   return (

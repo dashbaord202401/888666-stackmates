@@ -1,6 +1,6 @@
 import { Italic } from 'lucide-react';
 
-import { Toggle } from '@shared/ui';
+import { Toggle } from '@mates/shared-ui-shadcn';
 
 export default function ToggleOutline() {
   return (

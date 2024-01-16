@@ -5,14 +5,17 @@ import Link, { LinkProps } from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ViewVerticalIcon } from '@radix-ui/react-icons';
 
+// config
 import { docsConfig } from '../../config/docs';
 import { siteConfig } from '../../config/site';
 
-import { cn } from '@shared/utils';
+// utils
+import { cn } from '@mates/shared-utils/server';
 
-import { ScrollArea } from '@shared/ui';
-import { Sheet, SheetContent, SheetTrigger } from '@shared/ui';
-import { Button } from '@shared/ui/rsc';
+// components
+import { Button } from '@mates/shared-ui-shadcn/server';
+import { ScrollArea } from '@mates/shared-ui-shadcn';
+import { Sheet, SheetContent, SheetTrigger } from '@mates/shared-ui-shadcn';
 
 import { Icons } from './icons';
 

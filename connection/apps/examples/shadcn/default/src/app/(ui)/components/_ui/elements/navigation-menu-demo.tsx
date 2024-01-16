@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
 import { Icons } from '@shared/ui/icons';
 import {

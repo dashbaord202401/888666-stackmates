@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from '@shared/ui/rsc';
-import { useToast } from '@shared/ui';
+import { Button } from '@mates/shared-ui-shadcn/server';
+import { useToast } from '@mates/shared-ui-shadcn';
 
 export default function ToastSimple() {
   const { toast } = useToast();

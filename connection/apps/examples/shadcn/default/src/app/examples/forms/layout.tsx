@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 
-import { Separator } from '@shared/ui';
+import { Separator } from '@mates/shared-ui-shadcn';
 
 import { SidebarNav } from '../../examples/forms/components/sidebar-nav';
 

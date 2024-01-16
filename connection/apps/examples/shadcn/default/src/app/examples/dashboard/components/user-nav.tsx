@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@shared/ui';
+import { Avatar, AvatarFallback, AvatarImage } from '@mates/shared-ui-shadcn';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,8 +8,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from '@shared/ui';
-import { Button } from '@shared/ui/rsc';
+} from '@mates/shared-ui-shadcn';
+import { Button } from '@mates/shared-ui-shadcn/server';
 
 export function UserNav() {
   return (

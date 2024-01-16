@@ -6,10 +6,10 @@ import { format } from 'date-fns';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
-import { Button } from '@shared/ui/rsc';
-import { Calendar } from '@shared/ui';
+import { Button } from '@mates/shared-ui-shadcn/server';
+import { Calendar } from '@mates/shared-ui-shadcn';
 import {
   Command,
   CommandEmpty,
@@ -20,7 +20,7 @@ import {
   PopoverContent,
   PopoverTrigger,
   toast,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 
 import {
   Form,
@@ -31,7 +31,7 @@ import {
   FormLabel,
   FormMessage,
   Input,
-} from '@shared/ui/forms';
+} from '@mates/shared-ui-shadcn';
 
 const languages = [
   { label: 'English', value: 'en' },

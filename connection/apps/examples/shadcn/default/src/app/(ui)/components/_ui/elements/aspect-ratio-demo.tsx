@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { AspectRatio } from '@shared/ui';
+import { AspectRatio } from '@mates/shared-ui-shadcn';
 
 export default function AspectRatioDemo() {
   return (

@@ -5,11 +5,15 @@ import { CalendarIcon } from '@radix-ui/react-icons';
 import { addDays, format } from 'date-fns';
 import { DateRange } from 'react-day-picker';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
-import { Button } from '@shared/ui/rsc';
-import { Calendar } from '@shared/ui';
-import { Popover, PopoverContent, PopoverTrigger } from '@shared/ui';
+import { Button } from '@mates/shared-ui-shadcn/server';
+import { Calendar } from '@mates/shared-ui-shadcn';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@mates/shared-ui-shadcn';
 
 export function CalendarDateRangePicker({
   className,

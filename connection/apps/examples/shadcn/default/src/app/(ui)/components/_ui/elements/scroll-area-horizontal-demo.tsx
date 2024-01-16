@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Image from 'next/image';
 
-import { ScrollArea, ScrollBar } from '@shared/ui';
+import { ScrollArea, ScrollBar } from '@mates/shared-ui-shadcn';
 
 export interface Artwork {
   artist: string;

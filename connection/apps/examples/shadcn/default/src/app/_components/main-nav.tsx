@@ -4,11 +4,11 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
 import { Icons } from './icons';
 import { siteConfig } from '../../config/site';
-// import { Badge } from '@shared/ui/rsc';
+// import { Badge } from '@mates/shared-ui-shadcn/server';
 
 export function MainNav() {
   const pathname = usePathname();

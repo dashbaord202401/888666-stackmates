@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 
 import { SidebarNavItem } from '../../types/nav';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
 export interface DocsSidebarNavProps {
   items: SidebarNavItem[];

@@ -3,7 +3,7 @@
 import * as React from 'react';
 // import { Index } from '@/__registry__';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
 import { useConfig } from '../../hooks/use-config';
 import { Icons } from './icons';

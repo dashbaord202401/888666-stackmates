@@ -2,10 +2,15 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { PlusCircledIcon } from '@radix-ui/react-icons';
 
-import { Button } from '@shared/ui/rsc';
-import { ScrollArea, ScrollBar } from '@shared/ui';
-import { Separator } from '@shared/ui';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@shared/ui';
+import { Button } from '@mates/shared-ui-shadcn/server';
+import { ScrollArea, ScrollBar } from '@mates/shared-ui-shadcn';
+import { Separator } from '@mates/shared-ui-shadcn';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@mates/shared-ui-shadcn';
 
 import { AlbumArtwork } from './components/album-artwork';
 import { Menu } from './components/menu';

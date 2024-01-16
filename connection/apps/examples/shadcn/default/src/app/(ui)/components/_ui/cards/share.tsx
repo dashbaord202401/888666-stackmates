@@ -1,28 +1,29 @@
-"use client"
+'use client';
 
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/registry/default/ui/avatar"
-import { Button } from "@/registry/default/ui/button"
+} from '@/registry/default/ui/avatar';
+
+import { Separator } from '@mates/shared-ui-shadcn';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/default/ui/card"
-import { Input } from "@/registry/default/ui/input"
-import { Label } from "@/registry/default/ui/label"
+} from '@mates/shared-ui-shadcn/server';
 import {
+  Input,
+  Label,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/default/ui/select"
-import { Separator } from "@/registry/default/ui/separator"
+} from '@mates/shared-ui-shadcn';
 
 export function CardsShare() {
   return (
@@ -124,5 +125,5 @@ export function CardsShare() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

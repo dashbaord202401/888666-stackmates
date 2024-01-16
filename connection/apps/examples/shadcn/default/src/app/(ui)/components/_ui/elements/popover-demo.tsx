@@ -1,7 +1,11 @@
-import { Button } from '@shared/ui/rsc';
-import { Input } from '@shared/ui/forms';
-import { Label } from '@shared/ui/forms';
-import { Popover, PopoverContent, PopoverTrigger } from '@shared/ui';
+import { Button } from '@mates/shared-ui-shadcn/server';
+import { Input } from '@mates/shared-ui-shadcn';
+import { Label } from '@mates/shared-ui-shadcn';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@mates/shared-ui-shadcn';
 
 export default function PopoverDemo() {
   return (

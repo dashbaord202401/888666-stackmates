@@ -1,5 +1,5 @@
-import { Switch } from '@shared/ui';
-import { Label } from '@shared/ui/forms';
+import { Switch } from '@mates/shared-ui-shadcn';
+import { Label } from '@mates/shared-ui-shadcn';
 
 export default function SwitchDemo() {
   return (

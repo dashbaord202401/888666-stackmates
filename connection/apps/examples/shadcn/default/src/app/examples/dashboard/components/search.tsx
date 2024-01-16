@@ -1,4 +1,4 @@
-import { Input } from '@shared/ui/forms';
+import { Input } from '@mates/shared-ui-shadcn';
 
 export function Search() {
   return (

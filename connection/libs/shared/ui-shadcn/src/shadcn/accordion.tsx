@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import { ChevronDown } from 'lucide-react';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
 // https://github.com/shadcn/ui/blob/main/apps/www/registry/default/ui/accordion.tsx
 

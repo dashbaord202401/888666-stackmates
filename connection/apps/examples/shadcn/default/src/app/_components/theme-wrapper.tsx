@@ -1,6 +1,6 @@
 'use client';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 import { useConfig } from '../../hooks/use-config';
 
 interface ThemeWrapperProps extends React.ComponentProps<'div'> {

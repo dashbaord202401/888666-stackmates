@@ -8,9 +8,9 @@ import {
   HoverCardContent,
   HoverCardTrigger,
   Slider,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 
-import { Label } from '@shared/ui/forms';
+import { Label } from '@mates/shared-ui-shadcn';
 
 interface MaxLengthSelectorProps {
   defaultValue: SliderProps['defaultValue'];

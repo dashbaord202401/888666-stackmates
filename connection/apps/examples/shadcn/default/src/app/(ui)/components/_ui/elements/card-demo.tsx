@@ -1,9 +1,9 @@
 import { BellRing, Check } from 'lucide-react';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
-import { Switch } from '@shared/ui';
-import { Button } from '@shared/ui/rsc';
+import { Switch } from '@mates/shared-ui-shadcn';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Card,
   CardContent,
@@ -11,7 +11,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@shared/ui/rsc';
+} from '@mates/shared-ui-shadcn/server';
 
 const notifications = [
   {

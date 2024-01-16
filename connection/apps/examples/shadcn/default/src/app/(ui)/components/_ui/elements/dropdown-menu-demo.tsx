@@ -15,7 +15,7 @@ import {
   Users,
 } from 'lucide-react';
 
-import { Button } from '@shared/ui/rsc';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -29,7 +29,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 
 export default function DropdownMenuDemo() {
   return (

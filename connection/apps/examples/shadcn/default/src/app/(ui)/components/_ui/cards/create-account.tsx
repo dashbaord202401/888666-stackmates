@@ -1,7 +1,7 @@
-"use client"
+'use client';
 
-import { Icons } from "@/components/icons"
-import { Button } from "@/registry/default/ui/button"
+import { Input, Label } from '@mates/shared-ui-shadcn';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Card,
   CardContent,
@@ -9,9 +9,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/registry/default/ui/card"
-import { Input } from "@/registry/default/ui/input"
-import { Label } from "@/registry/default/ui/label"
+} from '@mates/shared-ui-shadcn/server';
+import { Icons } from '../../../../_components/icons';
 
 export function CardsCreateAccount() {
   return (
@@ -56,5 +55,5 @@ export function CardsCreateAccount() {
         <Button className="w-full">Create account</Button>
       </CardFooter>
     </Card>
-  )
+  );
 }

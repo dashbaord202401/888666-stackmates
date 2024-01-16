@@ -1,6 +1,6 @@
-import { cn } from '@shared/utils';
-import { Button } from '@shared/ui/rsc';
-import { ScrollArea } from '@shared/ui';
+import { cn } from '@mates/shared-utils/server';
+import { Button } from '@mates/shared-ui-shadcn/server';
+import { ScrollArea } from '@mates/shared-ui-shadcn';
 
 import { Playlist } from '../data/playlists';
 

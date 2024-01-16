@@ -1,10 +1,10 @@
-import { Button } from '@shared/ui/rsc';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 
 export default function TooltipDemo() {
   return (

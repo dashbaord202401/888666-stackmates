@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-import { Button } from '@shared/ui/rsc';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,7 +11,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 
 export default function DropdownMenuRadioGroupDemo() {
   const [position, setPosition] = React.useState('bottom');

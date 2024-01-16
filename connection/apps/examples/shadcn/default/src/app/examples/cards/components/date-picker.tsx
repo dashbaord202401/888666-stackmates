@@ -1,5 +1,5 @@
-import { Label } from '@shared/ui/forms';
-import { Card, CardContent } from '@shared/ui/rsc';
+import { Label } from '@mates/shared-ui-shadcn';
+import { Card, CardContent } from '@mates/shared-ui-shadcn/server';
 
 import DatePickerWithRange from './examples/date-picker-with-range';
 

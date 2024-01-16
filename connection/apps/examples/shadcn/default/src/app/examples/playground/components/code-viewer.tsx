@@ -1,4 +1,4 @@
-import { Button } from '@shared/ui/rsc';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Dialog,
   DialogContent,
@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 
 export function CodeViewer() {
   return (

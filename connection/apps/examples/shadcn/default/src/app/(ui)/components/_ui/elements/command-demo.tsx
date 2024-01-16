@@ -16,7 +16,7 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 
 export default function CommandDemo() {
   return (

@@ -4,11 +4,15 @@ import * as React from 'react';
 import { format } from 'date-fns';
 import { Calendar as CalendarIcon } from 'lucide-react';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
-import { Button } from '@shared/ui/rsc';
-import { Calendar } from '@shared/ui';
-import { Popover, PopoverContent, PopoverTrigger } from '@shared/ui';
+import { Button } from '@mates/shared-ui-shadcn/server';
+import { Calendar } from '@mates/shared-ui-shadcn';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@mates/shared-ui-shadcn';
 
 export default function DatePickerDemo() {
   const [date, setDate] = React.useState<Date>();

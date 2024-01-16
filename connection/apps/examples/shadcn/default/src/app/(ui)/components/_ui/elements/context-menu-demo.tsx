@@ -12,7 +12,7 @@ import {
   ContextMenuSubContent,
   ContextMenuSubTrigger,
   ContextMenuTrigger,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 
 export default function ContextMenuDemo() {
   return (

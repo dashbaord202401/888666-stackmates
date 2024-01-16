@@ -3,7 +3,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 
 export default function AccordionDemo() {
   return (

@@ -5,11 +5,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useFieldArray, useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
-import { toast } from '@shared/ui';
+import { toast } from '@mates/shared-ui-shadcn';
 
-import { Button } from '@shared/ui/rsc';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Form,
   FormControl,
@@ -18,16 +18,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@shared/ui/forms';
-import { Input } from '@shared/ui/forms';
+} from '@mates/shared-ui-shadcn';
+import { Input } from '@mates/shared-ui-shadcn';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@shared/ui/forms';
-import { Textarea } from '@shared/ui/forms';
+} from '@mates/shared-ui-shadcn';
+import { Textarea } from '@mates/shared-ui-shadcn';
 
 const profileFormSchema = z.object({
   username: z

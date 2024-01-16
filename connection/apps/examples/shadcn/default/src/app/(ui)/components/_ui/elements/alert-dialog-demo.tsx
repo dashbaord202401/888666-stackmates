@@ -8,8 +8,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@shared/ui';
-import { Button } from '@shared/ui/rsc';
+} from '@mates/shared-ui-shadcn';
+import { Button } from '@mates/shared-ui-shadcn/server';
 
 export default function AlertDialogDemo() {
   return (

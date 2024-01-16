@@ -4,7 +4,7 @@ import * as React from 'react';
 import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons';
 import { PopoverProps } from '@radix-ui/react-popover';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
 import {
   Command,
@@ -19,10 +19,10 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 
-import { Button } from '@shared/ui/rsc';
-import { Label } from '@shared/ui/forms';
+import { Button } from '@mates/shared-ui-shadcn/server';
+import { Label } from '@mates/shared-ui-shadcn';
 
 import { useMutationObserver } from '../../../../hooks/use-mutation-observer';
 import { Model, ModelType } from '../data/models';

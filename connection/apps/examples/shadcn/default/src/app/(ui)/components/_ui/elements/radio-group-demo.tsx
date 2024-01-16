@@ -1,5 +1,5 @@
-import { Label } from '@shared/ui/forms';
-import { RadioGroup, RadioGroupItem } from '@shared/ui/forms';
+import { Label } from '@mates/shared-ui-shadcn';
+import { RadioGroup, RadioGroupItem } from '@mates/shared-ui-shadcn';
 
 export default function RadioGroupDemo() {
   return (

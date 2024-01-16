@@ -12,7 +12,7 @@ import {
   MenubarSubContent,
   MenubarSubTrigger,
   MenubarTrigger,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 
 export default function MenubarDemo() {
   return (

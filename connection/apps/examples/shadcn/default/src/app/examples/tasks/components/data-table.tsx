@@ -23,7 +23,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@shared/ui/rsc';
+} from '@mates/shared-ui-shadcn/server';
 
 import { DataTablePagination } from '../components/data-table-pagination';
 import { DataTableToolbar } from '../components/data-table-toolbar';

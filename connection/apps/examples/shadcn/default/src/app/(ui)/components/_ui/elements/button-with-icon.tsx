@@ -1,6 +1,6 @@
 import { Mail } from 'lucide-react';
 
-import { Button } from '@shared/ui/rsc';
+import { Button } from '@mates/shared-ui-shadcn/server';
 
 export default function ButtonWithIcon() {
   return (

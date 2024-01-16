@@ -1,11 +1,16 @@
 import * as React from 'react';
 import { Check, Plus, Send } from 'lucide-react';
 
-import { cn } from '@shared/utils';
-import { Button } from '@shared/ui/rsc';
-import { Card, CardContent, CardFooter, CardHeader } from '@shared/ui/rsc';
+import { cn } from '@mates/shared-utils/server';
+import { Button } from '@mates/shared-ui-shadcn/server';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from '@mates/shared-ui-shadcn/server';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@shared/ui';
+import { Avatar, AvatarFallback, AvatarImage } from '@mates/shared-ui-shadcn';
 import {
   Command,
   CommandEmpty,
@@ -13,7 +18,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 import {
   Dialog,
   DialogContent,
@@ -21,15 +26,15 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 
-import { Input } from '@shared/ui/forms';
+import { Input } from '@mates/shared-ui-shadcn';
 
 const users = [
   {

@@ -1,5 +1,5 @@
-import { Input } from '@shared/ui/forms';
-import { Label } from '@shared/ui/forms';
+import { Input } from '@mates/shared-ui-shadcn';
+import { Label } from '@mates/shared-ui-shadcn';
 
 export default function InputWithText() {
   return (

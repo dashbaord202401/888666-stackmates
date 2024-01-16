@@ -1,4 +1,4 @@
-import { Checkbox } from '@shared/ui';
+import { Checkbox } from '@mates/shared-ui-shadcn';
 
 export default function CheckboxDisabled() {
   return (

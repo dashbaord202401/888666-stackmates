@@ -1,15 +1,20 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@shared/ui';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@mates/shared-ui-shadcn';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@shared/ui/rsc';
-import { Button } from '@shared/ui/rsc';
+} from '@mates/shared-ui-shadcn/server';
+import { Button } from '@mates/shared-ui-shadcn/server';
 
 import { CalendarDateRangePicker } from './components/date-range-picker';
 import { MainNav } from './components/main-nav';

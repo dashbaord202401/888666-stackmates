@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { cn } from '@shared/utils';
-import { buttonVariants } from '@shared/ui/rsc';
+import { cn } from '@mates/shared-utils/server';
+import { buttonVariants } from '@mates/shared-ui-shadcn/server';
 
 import { UserAuthForm } from '../../examples/authentication/components/user-auth-form';
 

@@ -3,16 +3,20 @@
 import * as React from 'react';
 import { Check, ChevronsUpDown } from 'lucide-react';
 
-import { cn } from '@shared/utils';
-import { Button } from '@shared/ui/rsc';
+import { cn } from '@mates/shared-utils/server';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-} from '@shared/ui';
-import { Popover, PopoverContent, PopoverTrigger } from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@mates/shared-ui-shadcn';
 
 const frameworks = [
   {

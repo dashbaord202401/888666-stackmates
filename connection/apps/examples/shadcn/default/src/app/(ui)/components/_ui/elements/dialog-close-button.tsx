@@ -1,6 +1,6 @@
 import { Copy } from 'lucide-react';
 
-import { Button } from '@shared/ui/rsc';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Dialog,
   DialogClose,
@@ -10,9 +10,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@shared/ui';
-import { Input } from '@shared/ui/forms';
-import { Label } from '@shared/ui/forms';
+} from '@mates/shared-ui-shadcn';
+import { Input } from '@mates/shared-ui-shadcn';
+import { Label } from '@mates/shared-ui-shadcn';
 
 export default function DialogCloseButton() {
   return (

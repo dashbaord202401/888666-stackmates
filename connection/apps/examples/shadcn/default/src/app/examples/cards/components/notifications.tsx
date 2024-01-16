@@ -6,7 +6,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@shared/ui/rsc';
+} from '@mates/shared-ui-shadcn/server';
 
 export function DemoNotifications() {
   return (

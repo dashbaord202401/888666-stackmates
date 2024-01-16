@@ -2,8 +2,8 @@
 
 import { addDays } from 'date-fns';
 
-import { Calendar } from '@shared/ui';
-import { Card, CardContent } from '@shared/ui/rsc';
+import { Calendar } from '@mates/shared-ui-shadcn';
+import { Card, CardContent } from '@mates/shared-ui-shadcn/server';
 
 const start = new Date(2023, 5, 5);
 

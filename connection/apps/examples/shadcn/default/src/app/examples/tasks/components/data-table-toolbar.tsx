@@ -3,8 +3,8 @@
 import { Cross2Icon } from '@radix-ui/react-icons';
 import { Table } from '@tanstack/react-table';
 
-import { Button } from '@shared/ui/rsc';
-import { Input } from '@shared/ui/forms';
+import { Button } from '@mates/shared-ui-shadcn/server';
+import { Input } from '@mates/shared-ui-shadcn';
 
 import { DataTableViewOptions } from './data-table-view-options';
 

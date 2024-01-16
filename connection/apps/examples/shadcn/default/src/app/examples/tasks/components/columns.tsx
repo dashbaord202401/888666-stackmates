@@ -2,8 +2,8 @@
 
 import { ColumnDef } from '@tanstack/react-table';
 
-import { Checkbox } from '@shared/ui';
-import { Badge } from '@shared/ui/rsc';
+import { Checkbox } from '@mates/shared-ui-shadcn';
+import { Badge } from '@mates/shared-ui-shadcn/server';
 
 import { labels, priorities, statuses } from '../data/data';
 import { Task } from '../data/schema';

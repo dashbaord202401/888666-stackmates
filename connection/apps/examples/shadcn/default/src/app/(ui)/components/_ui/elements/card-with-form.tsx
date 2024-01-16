@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Button } from '@shared/ui/rsc';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Card,
   CardContent,
@@ -8,17 +8,17 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@shared/ui/rsc';
+} from '@mates/shared-ui-shadcn/server';
 
-import { Input } from '@shared/ui/forms';
-import { Label } from '@shared/ui/forms';
+import { Input } from '@mates/shared-ui-shadcn';
+import { Label } from '@mates/shared-ui-shadcn';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@shared/ui/forms';
+} from '@mates/shared-ui-shadcn';
 
 export default function CardWithForm() {
   return (

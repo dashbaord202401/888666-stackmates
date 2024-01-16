@@ -2,16 +2,16 @@
 
 import { ChevronDownIcon } from '@radix-ui/react-icons';
 
-import { Button } from '@shared/ui/rsc';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@shared/ui/rsc';
+} from '@mates/shared-ui-shadcn/server';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@shared/ui';
+import { Avatar, AvatarFallback, AvatarImage } from '@mates/shared-ui-shadcn';
 import {
   Command,
   CommandEmpty,
@@ -19,8 +19,12 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from '@shared/ui';
-import { Popover, PopoverContent, PopoverTrigger } from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@mates/shared-ui-shadcn';
 
 export function CardsTeamMembers() {
   return (

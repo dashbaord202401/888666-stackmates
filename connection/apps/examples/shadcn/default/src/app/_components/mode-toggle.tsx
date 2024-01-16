@@ -4,13 +4,13 @@ import * as React from 'react';
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
 import { useTheme } from 'next-themes';
 
-import { Button } from '@shared/ui/rsc';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 
 export function ModeToggle() {
   const { setTheme } = useTheme();

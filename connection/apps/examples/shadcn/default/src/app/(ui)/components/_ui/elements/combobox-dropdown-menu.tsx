@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Calendar, MoreHorizontal, Tags, Trash, User } from 'lucide-react';
 
-import { Button } from '@shared/ui/rsc';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Command,
   CommandEmpty,
@@ -11,7 +11,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,7 +24,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 
 const labels = [
   'feature',

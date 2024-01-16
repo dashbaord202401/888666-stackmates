@@ -3,12 +3,12 @@
 import * as React from 'react';
 import { ChevronsUpDown, Plus, X } from 'lucide-react';
 
-import { Button } from '@shared/ui/rsc';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 
 export default function CollapsibleDemo() {
   const [isOpen, setIsOpen] = React.useState(false);

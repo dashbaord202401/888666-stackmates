@@ -1,6 +1,6 @@
 'use client';
 
-import { AspectRatio } from '@shared/ui';
+import { AspectRatio } from '@mates/shared-ui-shadcn';
 
 export function PromoVideo() {
   return (

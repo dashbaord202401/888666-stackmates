@@ -4,7 +4,7 @@
 import * as React from 'react';
 import { Drawer as DrawerPrimitive } from 'vaul';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
 const Drawer = DrawerPrimitive.Root;
 

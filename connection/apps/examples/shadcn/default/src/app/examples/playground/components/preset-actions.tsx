@@ -12,26 +12,26 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 import {
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@shared/ui';
-import { Switch } from '@shared/ui';
-import { toast } from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
+import { Switch } from '@mates/shared-ui-shadcn';
+import { toast } from '@mates/shared-ui-shadcn';
 
-import { Button } from '@shared/ui/rsc';
-import { Label } from '@shared/ui/forms';
+import { Button } from '@mates/shared-ui-shadcn/server';
+import { Label } from '@mates/shared-ui-shadcn';
 
 export function PresetActions() {
   const [open, setIsOpen] = React.useState(false);

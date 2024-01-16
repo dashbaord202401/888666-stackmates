@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRightIcon } from '@radix-ui/react-icons';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 import { Separator } from '@mates/shared-ui-shadcn';
 import { buttonVariants } from '@mates/shared-ui-shadcn/server';
 

@@ -1,6 +1,6 @@
 import Balance from 'react-wrap-balancer';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
 function PageHeader({
   className,

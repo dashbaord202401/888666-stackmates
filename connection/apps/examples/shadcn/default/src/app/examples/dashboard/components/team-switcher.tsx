@@ -7,9 +7,9 @@ import {
   PlusCircledIcon,
 } from '@radix-ui/react-icons';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@shared/ui';
+import { Avatar, AvatarFallback, AvatarImage } from '@mates/shared-ui-shadcn';
 import {
   Command,
   CommandEmpty,
@@ -18,7 +18,7 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 import {
   Dialog,
   DialogContent,
@@ -27,19 +27,23 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@shared/ui';
-import { Popover, PopoverContent, PopoverTrigger } from '@shared/ui';
-import { Button } from '@shared/ui/rsc';
+} from '@mates/shared-ui-shadcn';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@mates/shared-ui-shadcn';
+import { Button } from '@mates/shared-ui-shadcn/server';
 
-import { Input } from '@shared/ui/forms';
-import { Label } from '@shared/ui/forms';
+import { Input } from '@mates/shared-ui-shadcn';
+import { Label } from '@mates/shared-ui-shadcn';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@shared/ui/forms';
+} from '@mates/shared-ui-shadcn';
 
 const groups = [
   {

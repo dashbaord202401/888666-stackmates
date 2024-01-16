@@ -7,11 +7,11 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 
-import { Button } from '@shared/ui/rsc';
-import { Input } from '@shared/ui/forms';
-import { Label } from '@shared/ui/forms';
+import { Button } from '@mates/shared-ui-shadcn/server';
+import { Input } from '@mates/shared-ui-shadcn';
+import { Label } from '@mates/shared-ui-shadcn';
 
 export default function SheetDemo() {
   return (

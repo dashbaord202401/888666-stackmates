@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Collapsible,

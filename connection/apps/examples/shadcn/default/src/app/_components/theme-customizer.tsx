@@ -16,7 +16,7 @@ import { Paintbrush } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Drawer } from 'vaul';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
 import {
   Dialog,
@@ -25,13 +25,21 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@shared/ui';
-import { Popover, PopoverContent, PopoverTrigger } from '@shared/ui';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@mates/shared-ui-shadcn';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@mates/shared-ui-shadcn';
 
-import { Label } from '@shared/ui/forms';
-import { Button } from '@shared/ui/rsc';
-import { Skeleton } from '@shared/ui/rsc';
+import { Label } from '@mates/shared-ui-shadcn';
+import { Button } from '@mates/shared-ui-shadcn/server';
+import { Skeleton } from '@mates/shared-ui-shadcn/server';
 
 import { useConfig } from '../../hooks/use-config';
 import { Theme, themes } from '../../lib/registry/themes';

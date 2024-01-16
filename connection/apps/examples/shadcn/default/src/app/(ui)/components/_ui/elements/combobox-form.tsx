@@ -5,19 +5,23 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Check, ChevronsUpDown } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
-import { toast } from '@shared/ui';
-import { Popover, PopoverContent, PopoverTrigger } from '@shared/ui';
+import { toast } from '@mates/shared-ui-shadcn';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@mates/shared-ui-shadcn';
 
-import { Button } from '@shared/ui/rsc';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 import {
   Form,
   FormControl,
@@ -26,7 +30,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@shared/ui/forms';
+} from '@mates/shared-ui-shadcn';
 
 const languages = [
   { label: 'English', value: 'en' },

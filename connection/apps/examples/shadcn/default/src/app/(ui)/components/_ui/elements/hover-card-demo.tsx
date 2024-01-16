@@ -1,8 +1,12 @@
 import { CalendarDays } from 'lucide-react';
 
-import { Button } from '@shared/ui/rsc';
-import { Avatar, AvatarFallback, AvatarImage } from '@shared/ui';
-import { HoverCard, HoverCardContent, HoverCardTrigger } from '@shared/ui';
+import { Button } from '@mates/shared-ui-shadcn/server';
+import { Avatar, AvatarFallback, AvatarImage } from '@mates/shared-ui-shadcn';
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from '@mates/shared-ui-shadcn';
 
 export default function HoverCardDemo() {
   return (

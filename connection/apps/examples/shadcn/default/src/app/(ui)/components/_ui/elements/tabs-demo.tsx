@@ -1,4 +1,4 @@
-import { Button } from '@shared/ui/rsc';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Card,
   CardContent,
@@ -6,11 +6,15 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@shared/ui/rsc';
+} from '@mates/shared-ui-shadcn/server';
 
-import { Input } from '@shared/ui/forms';
-import { Label } from '@shared/ui/forms';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@shared/ui';
+import { Input, Label } from '@mates/shared-ui-shadcn';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@mates/shared-ui-shadcn';
 
 export default function TabsDemo() {
   return (

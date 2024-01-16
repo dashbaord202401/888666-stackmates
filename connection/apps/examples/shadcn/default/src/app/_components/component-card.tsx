@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { cn } from '@shared/utils';
-import { AspectRatio } from '@shared/ui';
+import { cn } from '@mates/shared-utils/server';
+import { AspectRatio } from '@mates/shared-ui-shadcn';
 
 export function ComponentCard({
   className,

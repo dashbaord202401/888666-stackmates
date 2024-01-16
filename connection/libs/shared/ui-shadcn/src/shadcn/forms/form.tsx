@@ -14,7 +14,7 @@ import {
 
 // https://github.com/shadcn/ui/blob/main/apps/www/registry/default/ui/form.tsx
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 import { Label } from './label';
 
 const Form = FormProvider;

@@ -11,9 +11,9 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from '@shared/ui';
-import { Button } from '@shared/ui/rsc';
-import { Label, Textarea } from '@shared/ui/forms';
+} from '@mates/shared-ui-shadcn';
+import { Button } from '@mates/shared-ui-shadcn/server';
+import { Label, Textarea } from '@mates/shared-ui-shadcn';
 
 import { CodeViewer } from './components/code-viewer';
 import { MaxLengthSelector } from './components/maxlength-selector';

@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ArrowRightIcon } from '@radix-ui/react-icons';
 
-import { cn } from '@shared/utils';
-import { ScrollArea, ScrollBar } from '@shared/ui';
+import { cn } from '@mates/shared-utils/server';
+import { ScrollArea, ScrollBar } from '@mates/shared-ui-shadcn';
 
 const examples = [
   {

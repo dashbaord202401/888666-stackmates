@@ -5,16 +5,20 @@ import { useRouter } from 'next/navigation';
 import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons';
 import { PopoverProps } from '@radix-ui/react-popover';
 
-import { cn } from '@shared/utils';
-import { Button } from '@shared/ui/rsc';
+import { cn } from '@mates/shared-utils/server';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-} from '@shared/ui';
-import { Popover, PopoverContent, PopoverTrigger } from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@mates/shared-ui-shadcn';
 
 import { Preset } from '../data/presets';
 

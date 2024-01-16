@@ -10,9 +10,9 @@ import {
   XCircle,
 } from 'lucide-react';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
-import { Button } from '@shared/ui/rsc';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Command,
   CommandEmpty,
@@ -20,8 +20,12 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from '@shared/ui';
-import { Popover, PopoverContent, PopoverTrigger } from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@mates/shared-ui-shadcn';
 
 type Status = {
   value: string;

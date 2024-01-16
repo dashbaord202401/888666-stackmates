@@ -1,5 +1,5 @@
-import { cn } from '@shared/utils';
-import { Slider } from '@shared/ui';
+import { cn } from '@mates/shared-utils/server';
+import { Slider } from '@mates/shared-ui-shadcn';
 
 type SliderProps = React.ComponentProps<typeof Slider>;
 

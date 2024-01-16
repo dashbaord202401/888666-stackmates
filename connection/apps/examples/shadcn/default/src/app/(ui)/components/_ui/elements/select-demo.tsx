@@ -8,7 +8,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from '@shared/ui/forms';
+} from '@mates/shared-ui-shadcn';
 
 export default function SelectDemo() {
   return (

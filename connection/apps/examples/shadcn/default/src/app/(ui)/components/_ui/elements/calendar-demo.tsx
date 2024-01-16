@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-import { Calendar } from '@shared/ui';
+import { Calendar } from '@mates/shared-ui-shadcn';
 
 export default function CalendarDemo() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());

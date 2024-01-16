@@ -1,4 +1,4 @@
-import { Separator } from '@shared/ui';
+import { Separator } from '@mates/shared-ui-shadcn';
 
 import { AccountForm } from '../../../examples/forms/account/account-form';
 

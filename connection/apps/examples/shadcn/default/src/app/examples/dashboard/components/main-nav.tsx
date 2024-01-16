@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
 export function MainNav({
   className,

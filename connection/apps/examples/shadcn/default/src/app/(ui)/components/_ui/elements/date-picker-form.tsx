@@ -6,13 +6,17 @@ import { CalendarIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
-import { toast } from '@shared/ui';
-import { Calendar } from '@shared/ui';
-import { Popover, PopoverContent, PopoverTrigger } from '@shared/ui';
+import { toast } from '@mates/shared-ui-shadcn';
+import { Calendar } from '@mates/shared-ui-shadcn';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@mates/shared-ui-shadcn';
 
-import { Button } from '@shared/ui/rsc';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Form,
   FormControl,
@@ -21,7 +25,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@shared/ui/forms';
+} from '@mates/shared-ui-shadcn';
 
 const FormSchema = z.object({
   dob: z.date({

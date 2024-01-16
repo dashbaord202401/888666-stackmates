@@ -15,7 +15,7 @@ import {
 } from '@tanstack/react-table';
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react';
 
-import { Checkbox } from '@shared/ui';
+import { Checkbox } from '@mates/shared-ui-shadcn';
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -24,10 +24,10 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 
-import { Input } from '@shared/ui/forms';
-import { Button } from '@shared/ui/rsc';
+import { Input } from '@mates/shared-ui-shadcn';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Table,
   TableBody,
@@ -35,7 +35,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@shared/ui/rsc';
+} from '@mates/shared-ui-shadcn/server';
 
 const data: Payment[] = [
   {

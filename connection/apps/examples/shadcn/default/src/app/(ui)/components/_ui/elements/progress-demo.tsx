@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-import { Progress } from '@shared/ui';
+import { Progress } from '@mates/shared-ui-shadcn';
 
 export default function ProgressDemo() {
   const [progress, setProgress] = React.useState(13);

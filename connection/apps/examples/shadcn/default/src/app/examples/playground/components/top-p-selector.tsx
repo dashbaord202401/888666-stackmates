@@ -8,8 +8,8 @@ import {
   HoverCardContent,
   HoverCardTrigger,
   Slider,
-} from '@shared/ui';
-import { Label } from '@shared/ui/forms';
+} from '@mates/shared-ui-shadcn';
+import { Label } from '@mates/shared-ui-shadcn';
 
 interface TopPSelectorProps {
   defaultValue: SliderProps['defaultValue'];

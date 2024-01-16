@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { Button } from '@shared/ui/rsc';
+import { Button } from '@mates/shared-ui-shadcn/server';
 
 export default function ButtonAsChild() {
   return (

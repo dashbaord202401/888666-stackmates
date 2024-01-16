@@ -4,8 +4,8 @@ import { Doc } from 'contentlayer/generated';
 
 import { NavItem, NavItemWithChildren } from '../../types/nav';
 
-import { cn } from '@shared/utils';
-import { buttonVariants } from '@shared/ui/rsc';
+import { cn } from '@mates/shared-utils/server';
+import { buttonVariants } from '@mates/shared-ui-shadcn/server';
 
 import { docsConfig } from '../../config/docs';
 

@@ -4,14 +4,14 @@ import * as React from 'react';
 import { DropdownMenuTriggerProps } from '@radix-ui/react-dropdown-menu';
 import { CheckIcon, CopyIcon } from '@radix-ui/react-icons';
 
-import { cn } from '@shared/utils';
-import { Button } from '@shared/ui/rsc';
+import { cn } from '@mates/shared-utils/server';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 
 import { NpmCommands } from '../../types/unist';
 import { Event, trackEvent } from '../../lib/events';

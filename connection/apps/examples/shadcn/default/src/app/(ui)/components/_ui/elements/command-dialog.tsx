@@ -19,7 +19,7 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 
 export default function CommandDialogDemo() {
   const [open, setOpen] = React.useState(false);

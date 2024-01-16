@@ -1,4 +1,4 @@
-import { Separator } from '@shared/ui';
+import { Separator } from '@mates/shared-ui-shadcn';
 
 import { NotificationsForm } from '../../../examples/forms/notifications/notifications-form';
 

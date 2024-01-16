@@ -2,8 +2,13 @@
 
 import * as React from 'react';
 
-import { cn } from '@shared/utils';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@shared/ui';
+import { cn } from '@mates/shared-utils/server';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@mates/shared-ui-shadcn';
 
 import { CopyButton, CopyWithClassNames } from './copy-button';
 

@@ -6,10 +6,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 
-import { Button } from '@shared/ui/rsc';
-import { Input, Label } from '@shared/ui/forms';
+import { Button } from '@mates/shared-ui-shadcn/server';
+import { Input, Label } from '@mates/shared-ui-shadcn';
 
 export function PresetSave() {
   return (

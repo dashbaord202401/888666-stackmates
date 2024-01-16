@@ -1,5 +1,5 @@
-import { Label } from '@shared/ui/forms';
-import { Textarea } from '@shared/ui/forms';
+import { Label } from '@mates/shared-ui-shadcn';
+import { Textarea } from '@mates/shared-ui-shadcn';
 
 export default function TextareaWithLabel() {
   return (

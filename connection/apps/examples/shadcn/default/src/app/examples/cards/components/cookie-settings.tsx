@@ -1,7 +1,7 @@
 'use client';
 
-import { Switch } from '@shared/ui';
-import { Button } from '@shared/ui/rsc';
+import { Switch } from '@mates/shared-ui-shadcn';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Card,
   CardContent,
@@ -9,8 +9,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@shared/ui/rsc';
-import { Label } from '@shared/ui/forms';
+} from '@mates/shared-ui-shadcn/server';
+import { Label } from '@mates/shared-ui-shadcn';
 
 export function DemoCookieSettings() {
   return (

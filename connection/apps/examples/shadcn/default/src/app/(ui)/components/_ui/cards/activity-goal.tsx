@@ -5,7 +5,7 @@ import { Minus, Plus } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Bar, BarChart, ResponsiveContainer } from 'recharts';
 
-import { Button } from '@shared/ui/rsc';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Card,
   CardContent,
@@ -13,10 +13,11 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@shared/ui/rsc';
+} from '@mates/shared-ui-shadcn/server';
 
 import { themes } from '../../../../../lib/registry/themes';
 import { useConfig } from '../../../../../hooks/use-config';
+
 const data = [
   {
     goal: 400,

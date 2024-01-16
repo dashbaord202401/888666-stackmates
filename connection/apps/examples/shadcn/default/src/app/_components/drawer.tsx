@@ -3,7 +3,7 @@
 import { forwardRef } from 'react';
 import { Drawer as DrawerPrimitive } from 'vaul';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
 const DrawerTrigger = DrawerPrimitive.Trigger;
 

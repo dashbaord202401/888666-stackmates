@@ -1,29 +1,28 @@
-"use client"
+'use client';
 
-import * as React from "react"
+import * as React from 'react';
 
-import { Button } from "@/registry/default/ui/button"
 import {
+  Button,
   Card,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/registry/default/ui/card"
-import { Input } from "@/registry/default/ui/input"
-import { Label } from "@/registry/default/ui/label"
+} from '@mates/shared-ui-shadcn/server';
+
+import { Input, Label, Textarea } from '@mates/shared-ui-shadcn';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/default/ui/select"
-import { Textarea } from "@/registry/default/ui/textarea"
+} from '@mates/shared-ui-shadcn';
 
 export function CardsReportIssue() {
-  const id = React.useId()
+  const id = React.useId();
 
   return (
     <Card>
@@ -86,5 +85,5 @@ export function CardsReportIssue() {
         <Button>Submit</Button>
       </CardFooter>
     </Card>
-  )
+  );
 }

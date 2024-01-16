@@ -5,9 +5,9 @@ import { ChevronDownIcon } from '@radix-ui/react-icons';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
-import { toast } from '@shared/ui';
+import { toast } from '@mates/shared-ui-shadcn';
 import {
   Form,
   FormControl,
@@ -16,10 +16,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@shared/ui/forms';
-import { RadioGroup, RadioGroupItem } from '@shared/ui/forms';
+} from '@mates/shared-ui-shadcn';
+import { RadioGroup, RadioGroupItem } from '@mates/shared-ui-shadcn';
 
-import { Button, buttonVariants } from '@shared/ui/rsc';
+import { Button, buttonVariants } from '@mates/shared-ui-shadcn/server';
 
 const appearanceFormSchema = z.object({
   theme: z.enum(['light', 'dark'], {

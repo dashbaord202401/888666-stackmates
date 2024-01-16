@@ -2,10 +2,10 @@
 
 import * as React from 'react';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
-import { Button } from '@shared/ui/rsc';
-import { Input, Label } from '@shared/ui/forms';
+import { Button } from '@mates/shared-ui-shadcn/server';
+import { Input, Label } from '@mates/shared-ui-shadcn';
 
 import { Icons } from '../../../_components/icons';
 

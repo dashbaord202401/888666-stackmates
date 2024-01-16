@@ -1,4 +1,4 @@
-import { Skeleton } from '@shared/ui/rsc';
+import { Skeleton } from '@mates/shared-ui-shadcn/server';
 
 export default function SkeletonDemo() {
   return (

@@ -1,6 +1,10 @@
 import { AlertCircle } from 'lucide-react';
 
-import { Alert, AlertDescription, AlertTitle } from '@shared/ui/rsc';
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from '@mates/shared-ui-shadcn/server';
 
 export default function AlertDestructive() {
   return (

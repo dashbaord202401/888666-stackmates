@@ -1,5 +1,5 @@
-import { Button } from '@shared/ui/rsc';
-import { Textarea } from '@shared/ui/forms';
+import { Button } from '@mates/shared-ui-shadcn/server';
+import { Textarea } from '@mates/shared-ui-shadcn';
 
 export default function TextareaWithButton() {
   return (

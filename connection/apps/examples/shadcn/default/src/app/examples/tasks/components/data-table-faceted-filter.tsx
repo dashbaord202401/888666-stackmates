@@ -2,7 +2,7 @@ import * as React from 'react';
 import { CheckIcon, PlusCircledIcon } from '@radix-ui/react-icons';
 import { Column } from '@tanstack/react-table';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
 import {
   Command,
@@ -12,10 +12,14 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from '@shared/ui';
-import { Popover, PopoverContent, PopoverTrigger } from '@shared/ui';
-import { Separator } from '@shared/ui';
-import { Badge, Button } from '@shared/ui/rsc';
+} from '@mates/shared-ui-shadcn';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@mates/shared-ui-shadcn';
+import { Separator } from '@mates/shared-ui-shadcn';
+import { Badge, Button } from '@mates/shared-ui-shadcn/server';
 
 interface DataTableFacetedFilterProps<TData, TValue> {
   column?: Column<TData, TValue>;

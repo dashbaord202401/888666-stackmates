@@ -7,18 +7,27 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@shared/ui';
-import { AspectRatio } from '@shared/ui';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
+import { AspectRatio } from '@mates/shared-ui-shadcn';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@mates/shared-ui-shadcn';
 
-import { Alert, AlertDescription, AlertTitle } from '@shared/ui/rsc';
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from '@mates/shared-ui-shadcn/server';
 
 import { NpmCommands } from '../../types/unist';
 import { Event } from '../../lib/events';

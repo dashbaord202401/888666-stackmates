@@ -3,13 +3,18 @@
 import * as React from 'react';
 // import { Index } from '@/__registry__';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
 import { CopyButton, CopyWithClassNames } from './copy-button';
 import { Icons } from './icons';
 import { StyleSwitcher } from './style-switcher';
 import { ThemeWrapper } from './theme-wrapper';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@shared/ui';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@mates/shared-ui-shadcn';
 
 import { useConfig } from '../../hooks/use-config';
 import { styles } from '../../lib/registry/styles';

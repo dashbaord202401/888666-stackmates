@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { type SelectTriggerProps } from '@radix-ui/react-select';
 
-import { cn } from '@shared/utils';
+import { cn } from '@mates/shared-utils/server';
 
 import {
   Select,
@@ -11,7 +11,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@shared/ui/forms';
+} from '@mates/shared-ui-shadcn';
 
 import { useConfig } from '../../hooks/use-config';
 import { Style, styles } from '../../lib/registry/styles';

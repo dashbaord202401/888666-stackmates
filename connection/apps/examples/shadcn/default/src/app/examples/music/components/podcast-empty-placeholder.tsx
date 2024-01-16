@@ -1,4 +1,4 @@
-import { Button } from '@shared/ui/rsc';
+import { Button } from '@mates/shared-ui-shadcn/server';
 import {
   Dialog,
   DialogContent,
@@ -7,10 +7,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@shared/ui';
+} from '@mates/shared-ui-shadcn';
 
-import { Input } from '@shared/ui/forms';
-import { Label } from '@shared/ui/forms';
+import { Input } from '@mates/shared-ui-shadcn';
+import { Label } from '@mates/shared-ui-shadcn';
 
 export function PodcastEmptyPlaceholder() {
   return (
