@@ -1,6 +1,6 @@
 # Stackmates
 
-[AI](https://github.com/dreamineering/stackmates/tree/main/ai) & [Blockchain](https://github.com/dreamineering/stackmates/tree/main/bc) driven [Connection](https://github.com/dreamineering/stackmates/tree/main/connection)
+Shared economy experiments to grow stronger communities with [AI](https://github.com/dreamineering/stackmates/tree/main/ai) & [Blockchain](https://github.com/dreamineering/stackmates/tree/main/bc) driven [Connection](https://github.com/dreamineering/stackmates/tree/main/connection)
 
 - [A](https://github.com/dreamineering/stackmates/tree/main/ai)
 - [B](https://github.com/dreamineering/stackmates/tree/main/bc)

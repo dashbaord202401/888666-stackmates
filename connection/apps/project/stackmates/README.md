@@ -1,4 +1,4 @@
-## Mates
+## Stackmates
 
 Investors back [teams](https://mm.dreamineering.com/docs/principles/platform/science/numbers/tight-fives) they like and believe in.
 

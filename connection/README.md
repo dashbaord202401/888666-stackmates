@@ -7,21 +7,29 @@ How will humans interface with technology to get things done?
 Mass Onboarding to blockchain for the greater good requires real human connections.
 
 1. Loyalty is valuable
-2. Decentralization doesn't matter until it does.
-3. Games essential to learning with low stakes price of failure.
-4. Should not have to be crypto geek to get [airdrops](https://twitter.com/ayyyeandy/status/1743733461142175959?t=oRP84LCsN7w8kvAAmxr0mg&s=03)
+2. Trust build loyalty
 
-## Hypothesis
+## Marketing
 
 Games will form the glue that connect people to shape culture.
 
-- The simplest game is collecting and swaping things. (Marketing)
+- Tokenized loyalty
+- Proof of humanity
+- AI driven strategy
 
-## Code
+[Marketing Spec]()
 
-Collect example code that demonstrate useful patterns into examples to make it easier to compare alternative tech stack options.
+## Best Practice Examples
 
-### Examples
+Create a library of examples to establish patterns and contrast pros and cons of different architecture options.
+
+### Nextjs Patterns
+
+- [ ] [T3 Apps](https://mm.dreamineering.com/docs/engineering/software/sdk/nextjs/#t3-apps)
+- [ ] [ShadCn](https://mm.dreamineering.com/docs/engineering/software/sdk/nextjs/nextjs-components/libraries/ui-components-shadcn)
+- [ ] Vercel AI
+
+### Rollup / Eth Patterns
 
 Scaffold Eth for quick exploration of ideas.
 
@@ -29,7 +37,11 @@ Scaffold Eth for quick exploration of ideas.
 npx nx serve demo-scaffold-eth --port 3000
 ```
 
-### Project Apps
+### Mono / Solana Patterns
+
+- [ ] DePin Example
+
+## Business Experiments
 
 Create hackathon starting point with the assumption that every business/organisation/protocol requires
 
@@ -99,6 +111,8 @@ Run `nx list` to get a list of available plugins and whether they have generator
 
 Learn more about [Nx generators on the docs](https://nx.dev/plugin-features/use-code-generators).
 
+## Create
+
 ### Apps
 
 Best practice example.
@@ -115,7 +129,9 @@ Todo: Decision tree for Next vs Node
 nx g @nx/next:library shared-ui-shadcn --directory libs/shared/ui-shadcn  --dryRun
 ```
 
-### Move Projects
+## Move
+
+### Projects
 
 ```bash
 nx g mv --project mates --destination apps/project/mates --dryRun
@@ -123,6 +139,12 @@ nx g mv --project mates --destination apps/project/mates --dryRun
 
 ```bash
 nx g mv --project demo-chainlink-functions apps/examples/chainlink/functions --dryRun --verbose
+```
+
+## Remove
+
+```bash
+nx g rm --project mates-e2e
 ```
 
 ### Editor Integration

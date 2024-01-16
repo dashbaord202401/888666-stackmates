@@ -1,0 +1,2556 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema", "views"]
+}
+
+// Best Practices:
+
+// test
+// By using @updatedAt for the updated_at field, Prisma will update this field with the current datetime whenever an update operation is performed on a recor
+
+// Keep the naming convention consistent across all models, e.g., always use updated_at and not sometimes updatedAt or UpdatedDate, etc.
+
+// Always use DateTime as the type for updated_at.
+
+// It's good to also include a created_at DateTime @default(now()) field for records creation time, along with the updated_at field. This helps in tracking when a record was created and when it was last updated.
+
+// https://supabase.com/partners/integrations/prisma
+// shadowDatabaseUrl = env("PRISMA_SHADOW_DATABASE_URL")
+datasource db {
+  provider          = "postgresql"
+  url               = env("PRISMA_DIRECT_URL")
+  schemas           = ["drmg", "practice", "public", "warehouse", "ecommerce"]
+}
+
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@schema("public")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@schema("public")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@schema("public")
+}
+
+model User {
+  id                          String    @id @default(cuid())
+  name                        String?
+  email                       String?   @unique
+  emailVerified               DateTime?
+  image                       String?
+  role                        String?
+
+  contact                     ContactPerson?
+
+  gs_provider_id              Int?
+  gs_user_id                  Int?
+  gs_client_id                Int?
+  client                      Client?
+
+  stripe_customer_id          String?
+  stripe_subscription_id      String?
+  stripe_subscription_status  StripeSubscriptionStatus?
+
+  active_drmg_org_id          Int?
+
+  interactions                ContactInteraction[]
+  accounts                    Account[]
+  sessions                    Session[]
+
+  journeys                    PlayerJourney[]
+  decisions                   Decision[]  
+  boards                      Board[]         
+
+  @@schema("public")
+}
+
+enum StripeSubscriptionStatus {
+  incomplete
+  incomplete_expired
+  trialing
+  active
+  past_due
+  canceled
+  unpaid
+  paused
+
+  @@schema("public")
+}
+
+model StripeEvent {
+  id               String   @id @unique
+  api_version      String?
+  data             Json
+  request          Json?
+  type             String
+  object           String
+  account          String?
+  created          DateTime
+  livemode         Boolean
+  pending_webhooks Int
+
+  @@schema("public")
+}
+
+
+model EmployeeRates {
+  id                 Int      @id @default(autoincrement())
+
+  drmg_org_id        Int
+  contact_id         Int
+  role               String?  @db.VarChar(100)
+
+  date_from          DateTime @db.Date
+  date_to            DateTime @db.Date
+  contractor_ind     Int?
+  annual_salary      Float?
+  hourly_rate        Float?
+
+  @@map(name: "employee_rates")
+  @@schema("drmg")
+}
+
+// Gensolve System User
+model SystemUser {
+  id                 Int      @id @default(autoincrement())
+  import_id          Int      @unique
+
+  drmg_org_id        Int?
+  organisation_id    Int
+  user_name          String   @db.VarChar(100)
+  first_name         String?  @db.VarChar(100)
+  last_name          String?  @db.VarChar(100)
+  active_ind         Int      @default(1)
+
+  reports_name       String?  @db.VarChar(100)
+  role               String?  @db.VarChar(100)
+  contractor_ind     Int?
+  annual_salary      Float?
+  hourly_rate        Float?
+
+  @@map(name: "system_users")
+  @@schema("practice")
+}
+
+
+// https://docs.google.com/spreadsheets/d/137bivoW4gOKJ9avATvSUgnFND6xELQuJw4cybaL006c/edit#gid=596209756
+model BusinessRoleRates {
+  id                 Int      @id @default(autoincrement())
+
+  job_function       String   @db.VarChar(100)  // physio, admin, marketing, customer success
+  job_title          String   @db.VarChar(100)
+  expertise          String   @db.VarChar(100)  // junior, intermediate, senior, expert
+
+  date_from          DateTime @db.Date
+  date_to            DateTime @db.Date
+
+  country            String?  @db.VarChar(100)
+  region             String?  @db.VarChar(100)
+  currency           String?  @db.VarChar(100)
+
+  annual_salary      Float?
+  monthly_rate       Float?
+  weekly_rate        Float?
+  hourly_rate        Float?
+
+  @@map(name: "business_role_rates")
+  @@schema("drmg")
+
+}
+
+
+model Organisation {
+  id                          Int       @id @default(autoincrement())
+  name                        String    
+  addressOne                  String?
+  addressTwo                  String?
+  postCode                    String?
+  country                     String      // headquarters
+
+  gensolve_org_id             Int?
+  gensolve_vendor_id          Int?
+  gensolve_name               String?
+
+
+  businessContacts            BusinessContact[]
+  
+  tradePartners               BusinessTradePartner[]@relation("TradePartners")
+  tradePartnersReverse        BusinessTradePartner[]@relation("TradePartnersReverse")
+
+  recurringExpenses           RecurringExpense[] @relation("BusinessRecurringExpenses")
+  expenses                    ExpensePayment[] @relation("BusinessExpenses")
+  recurringRevenueAsCreditor  RecurringExpense[] @relation("CreditorRecurringExpenses")
+  revenueAsCreditor           ExpensePayment[] @relation("CreditorExpenses")
+
+  resultBenchmarks            MetricResultBenchmark[]
+  businessResults             BusinessMetricResult[]
+
+
+
+  createdAt                   DateTime  @default(now())
+  updatedAt                   DateTime  @updatedAt
+  
+  @@unique([name])
+  @@schema("drmg")
+  @@map("organisations")
+}
+
+// testing ability to use @vercel/postgres with supabase
+
+model Invoice {
+  id          String    @id @default(uuid())
+  customer_id String      
+  customer    Customer    @relation(fields: [customer_id], references: [id])
+
+  amount      Int
+  status      String
+  date        DateTime
+
+  @@schema("ecommerce")
+  @@map("invoices")
+}
+
+model Customer {
+  id       String @id @default(uuid())
+  name     String
+  email    String @unique
+  invoices Invoice[]
+
+  @@schema("ecommerce")
+  @@map("customers")
+}
+
+
+//////////////// DREAMINEERING ////////////////////
+
+model Decision {
+  id                        Int       @id @default(autoincrement())
+
+  // dates
+  dateRequired              DateTime  @map("date_required")
+  dateDecided               DateTime?  @map("date_decided")
+  dateExecuteStarted        DateTime?  @map("date_execute_started")
+  dateExecuteEnded          DateTime?  @map("date_execute_ended")
+  dateOutcomeReviewed       DateTime?  @map("date_outcome_reviewed")
+
+  title                     String    // succint headline for the decision
+  category                  String    // Area of life or business the decision affects (e.g., Finance, Health, Project Management)
+  description               String
+  desiredOutcomes           String   @map("desired_outcomes")
+
+  constraints               String?
+  stakeholders              String?
+  informationSources        String?  @map("information_sources")
+
+  // consideration set
+  availableOptions          String?  @map("available_options")
+  chosenOption              String?  @map("chosen_option")
+  reasoning                 String?
+
+  // risk assessment
+  riskLevel                 String?  @map("risk_level")              // low, medium, high
+  riskSummary               String?  @map("risk_summary")
+  negativeSideEffects       String?  @map("negative_side_effects")   // What are the possible negative consequences?
+  probabilityOfFailure      Float?   @map("probability_of_failure")
+
+  // upsides
+  positiveSideEffects       String?  @map("positive_side_effects")               // What are the possible benefits?
+  probabilityOfSuccess      Float?   @map("probability_of_success") @default(0)
+  
+  decisionOwnerId           String  @map("decision_owner_id")
+  decisionOwner             User    @relation(fields: [decisionOwnerId], references: [id])
+  decisionMakers            String?  @map("decision_makers")
+  confidenceLevel           String?  @map("confidence_level")
+  
+  // safety net
+  reverseStrategy           String? @map("reverse_strategy") 
+  triggers                  MetricResultBenchmark[]
+
+  // outcome  
+  outcomeResults            String?  @map("outcome_results")
+  outcomeReview             String?  @map("outcomes_vs_expectations_review") @db.Text
+  lessonsLearned            String?  @map("outcome_lessons_learned")
+
+  drmgOrgId                 Int @map("drmg_org_id")
+  createdByUserId           String @map("created_by_user_id")
+  updatedByUserId           String @map("updated_by_user_id")
+  
+  @@map("decision_log")
+  @@schema("drmg")
+}
+
+
+model PlayerJourney {
+  id                        Int     @id @default(autoincrement())
+  focus                     String? @db.VarChar(50)     // direction, energy, professional, business
+  course                    String? @db.Text            // internal course name  
+  
+  intention                 String? @db.Text            // client
+  weakness                  String? @db.Text            // client
+  achievement               String? @db.Text            //
+  
+  obstacles                 String? @db.Text            // coach
+  reflection                String? @db.Text            // coach
+  next_steps                String? @db.Text            // coach
+  
+  date_journey_started      DateTime
+  date_journey_ended        DateTime
+
+  marketing_spotlight_ind   Int? @default(0)
+  date_created              DateTime @default(now())
+  date_updated              DateTime @updatedAt
+
+  user                      User  @relation(fields: [user_id], references: [id])
+  user_id                   String @unique
+
+  @@schema("drmg")
+}
+
+model ClientActionItem {
+  id                   Int       @id @default(autoincrement())
+  client_id            BigInt
+  report_name          String    @db.VarChar(100)
+  action_completed_ind Int?
+  actioned_by          BigInt?
+  actioned_by_name     String?   @db.VarChar(100)
+  date_of_report       DateTime  @db.Date
+  date_report_from     DateTime  @db.Date
+  date_report_to       DateTime  @db.Date
+  date_actioned        DateTime? @db.Timestamp(6)
+  
+  client   Client @relation(fields: [client_id], references: [import_id])
+
+  @@map(name: "clients_in_action_lists")
+  @@schema("drmg")
+}
+
+
+model Problem {
+  id                      Int       @id @default(autoincrement())
+  category                String    // MSK, health, wealth, relationships, career, business, personal
+  
+  focus_area              String?    // location, region,  sub category
+  name                    String    @unique             // problem name
+  description             String?   @db.VarChar(255)
+
+  std_solution_interval   String?   @db.VarChar(255) @default("Months")  //days, weeks, months, years
+  std_solution_timeframe  Int?      @default(1)  // how many weeks, months, years
+  std_solution_sessions   Int?      @default(1)
+  std_solution_phases     Int?      @default(1)
+  std_solution_cost       Decimal?  @default(0)
+
+  best_solution           SolutionProtocol? @relation("BestSolution", fields: [best_solution_id], references: [id])
+  best_solution_id        Int?
+
+  import_system_id        Int?
+  import_system_name      String?   @db.VarChar(255)
+  import_system           String?   @db.VarChar(255)
+
+  solutions               SolutionProtocol[] @relation("Problem")
+  
+  @@unique([category, name])
+  @@map(name: "problems")
+  @@schema("drmg")
+}
+
+model SolutionProtocol {
+  id                    Int       @id @default(autoincrement())
+  
+  problem               Problem   @relation("Problem", fields: [problem_id], references: [id])
+  problem_id            Int
+  solution_desc         String    @db.Text
+  
+  solution_interval     String?   @db.VarChar(255) //days, weeks, months, years
+  solution_timeframe    Int?  // how many weeks, months, years
+  solution_sessions     Int?
+  solution_phases       Int?  
+  solution_cost         Decimal?  
+
+  problems              Problem[] @relation("BestSolution")
+  milestones            SolutionMilestone[]
+
+  @@map(name: "solution_protocols")
+  @@schema("drmg")
+}
+
+model SolutionMilestone {
+  id                  Int       @id @default(autoincrement())
+
+  solution            SolutionProtocol @relation(fields: [solution_id], references: [id])
+  solution_id         Int
+
+  progress_date       DateTime @db.Date
+  progress_check      String?   @db.VarChar(255)
+
+  @@map(name: "solution_protocol_milestones")
+  @@schema("drmg")
+}
+
+
+// Capability Talents/Skills/Interests are developed abilities that allow us to perform tasks or activities well. Talents are often natural aptitudes we are born with, while skills are typically learned and improved over time. Examples include:
+
+  // Artistic ability (drawing, painting, music, etc.)
+  // Logical thinking and problem-solving
+  // Leadership and team management
+  // Public speaking and communication
+  // Technical skills (programming, machinery operation, etc.)
+
+model HumanCapability {
+  id            Int       @id @default(autoincrement())
+  name          String    @unique
+  description   String?   @db.VarChar(255)
+
+  @@map(name: "human_capabilities")
+  @@schema("drmg")
+}
+
+// Values are deeply held beliefs that guide our decisions and behaviors. They reflect what we consider important or worthwhile, and they often influence our goals and motivations. Examples include:
+
+  // Honesty and integrity
+  // Compassion and kindness
+  // Ambition and achievement
+  // Independence and self-reliance
+  // Respect and humility
+
+
+model HumanValue {
+  id            Int       @id @default(autoincrement())
+  name          String    @unique
+  description   String?   @db.VarChar(255)
+
+  @@map(name: "human_values")
+  @@schema("drmg")
+}
+
+// Traits are relatively stable characteristics that define a person's personality. They are usually inherent or developed early in life and remain relatively constant over time. 
+
+// Examples include:
+
+  // Extroversion vs. introversion
+  // Openness to experience
+  // Conscientiousness
+  // Agreeableness
+  // Neuroticism (emotional stability)
+
+model HumanTrait {
+  id            Int       @id @default(autoincrement())
+  name          String    @unique
+  description   String?   @db.VarChar(255)
+
+  @@map(name: "human_traits")
+  @@schema("drmg")
+}
+
+// Behaviors are the actions we perform, often in response to specific situations, stimuli, or thoughts. They can change over time and be influenced by our environment, beliefs, and experiences. Examples include:
+
+  // Procrastination
+  // Aggression
+  // Altruism
+  // Risk-taking
+  // Compliance or defiance
+
+model HumanBehaviour {
+  id            Int       @id @default(autoincrement())
+  name          String    @unique
+  description   String?   @db.VarChar(255)
+
+  @@map(name: "human_behaviours")
+  @@schema("drmg")
+}
+
+// Triggers are stimuli that prompt a certain behavior or emotion. They can come from our external environment or from internal thoughts and feelings. Triggers can be either positive or negative, and they often are connected to our past experiences or deeply held beliefs and values. Understanding your triggers can be an important part of self-awareness and emotional intelligence.
+
+// Here are some examples of triggers:
+
+// **External Triggers** - These are triggers that come from our environment or from other people.
+
+// **Internal Triggers** - These are triggers that come from our own thoughts, memories, or physical sensations.
+
+// It's worth noting that triggers can be highly individual, and what triggers one person may not have the same effect on another. Also, triggers can change over time as we grow, have new experiences, and develop new perspectives.
+
+model HumanTrigger {
+  id            Int       @id @default(autoincrement())
+  name          String    @unique
+  type          String    @db.VarChar(255)                // internal or external
+  description   String?   @db.VarChar(255)
+
+  @@map(name: "human_triggers")
+  @@schema("drmg")
+}
+
+// Motivations / Desires are the underlying reasons for our actions. They are often unconscious and can change over time. Examples include:
+
+  // Power
+  // Achievement
+  // Affiliation
+  // Security
+  // Autonomy
+
+model HumanMotivation {
+  id            Int       @id @default(autoincrement())
+  name          String    @unique
+  type          String    @db.VarChar(255)                // internal or external
+  description   String?   @db.VarChar(255)
+
+  contacts      ContactMotivation[]
+
+  @@map(name: "human_motivations")
+  @@schema("drmg")
+}
+
+
+model ContactPerson {
+  id                        Int       @id @default(autoincrement())
+  first_name                String
+  last_name                 String
+  mobile                    String?
+  email                     String?
+
+  // social influence
+  social_influence_rank     Int?      @default(0)
+  social_youtube            String?   @db.VarChar(255)
+  social_instagram          String?   @db.VarChar(255)
+  social_facebook           String?   @db.VarChar(255)
+  social_x                  String?   @db.VarChar(255)
+  social_linkedin           String?   @db.VarChar(255)
+  social_tiktok             String?   @db.VarChar(255)
+
+  notes                     String?   @db.Text
+  // conversations             String?   @db.Text
+  // proof of identity?
+
+  user                      User?  @relation(fields: [user_id], references: [id])
+  user_id                   String? @unique
+
+  interactions              ContactInteraction[]
+  businessAssociations      BusinessContact[]     // past and present employers, companies.
+
+  motivations               ContactMotivation[]
+  business_capabilities     ContactBusinessFunctionCapability[]
+
+  drmg_org_id               Int
+
+  // @@unique([email])
+  @@schema("drmg")
+	@@map("human_contacts")
+}
+
+// Challenge or Obstacle, Injury, Mental Issue, System Ticket
+model ContactProblem {
+  id                    Int       @id @default(autoincrement())
+  type                  String    @db.VarChar(255)  // injury, illness, disease, condition, other
+  notes                 String?   @db.Text
+
+  // If Injury
+  // Condition             Condition? @relation(fields: [condition_id], references: [id])
+  // condition_id          Int?
+
+  drmg_org_id           Int
+
+  @@schema("drmg")
+	@@map("human_contact_problems")
+}
+
+// similar to events in gs
+model ContactInteraction {
+  id                    Int       @id @default(autoincrement())
+  contact               ContactPerson   @relation(fields: [contact_id], references: [id])
+  contact_id            Int 
+
+  user                  User      @relation(fields: [user_id], references: [id])
+  user_id               String 
+
+  type                  String    @db.VarChar(255)  // call, email, meeting, sms, letter, social media, other
+  agenda                String?   @db.Text          // could link this to a strategic template
+  notes                 String?   @db.Text
+  
+  @@schema("drmg")
+	@@map("contact_interactions")
+}
+
+model ContactMotivation {
+  contact                   ContactPerson @relation(fields: [contact_id], references: [id])
+  contact_id                Int  
+  motivation                HumanMotivation @relation(fields: [motivation_id], references: [id])
+  motivation_id             Int
+
+  subjective                String?   @db.Text
+  subjective_rank           Int?      @default(0)
+
+  objective                 String?   @db.Text
+  objective_rank            Int?      @default(0)
+
+  created_at                DateTime @default(now())
+  updated_at                DateTime @updatedAt
+
+  @@id([contact_id, motivation_id])
+  @@map(name: "contact_motivations")
+  @@schema("drmg")
+}
+
+model ContactBusinessFunctionCapability {
+  id                        Int       @default(autoincrement())
+  
+  contact                   ContactPerson @relation(fields: [contact_id], references: [id])
+  contact_id                Int 
+  
+  business_function         BusinessFunction @relation(fields: [business_function_id], references: [id])
+  business_function_id      Int
+
+  subjective                String?   @db.Text
+  subjective_rank           Int?      @default(0)
+
+  objective                 String?   @db.Text
+  objective_rank            Int?      @default(0)
+
+  created_at                DateTime @default(now())
+  updated_at                DateTime @updatedAt
+
+  @@id([contact_id, business_function_id])
+  @@map(name: "contact_business_function_capabilities")
+  @@schema("drmg")
+}
+
+model BusinessContact {
+  business          Organisation @relation(fields: [business_id], references: [id])
+  business_id       Int
+  contact           ContactPerson @relation(fields: [contact_id], references: [id])
+  contact_id        Int
+
+  currentlyActive   Int @default(1)
+  connectionType    String
+  connectionNotes   String?   @db.Text
+  email             String?   @db.VarChar(255)
+  mobile            String?   @db.VarChar(100)
+  country           String?   @db.VarChar(255)
+  location          String?   @db.VarChar(255)
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@id([business_id, contact_id])
+  @@schema("drmg")
+	@@map("business_contacts")
+}
+
+model BusinessTradePartner {
+  business                  Organisation @relation("TradePartners", fields: [businessId], references: [id])
+  businessId                Int  
+  tradePartner              Organisation @relation("TradePartnersReverse", fields: [tradePartnerId], references: [id])
+  tradePartnerId            Int
+
+  currentlyActive           Int @default(1)
+  isDebtor                  Int @default(0)         // customer
+  isCreditor                Int @default(0)         // supplier
+  connectionNotes           String?  @db.Text
+
+  createdAt                 DateTime @default(now())
+  updatedAt                 DateTime @updatedAt
+
+  @@id([businessId, tradePartnerId])
+  @@schema("drmg")
+	@@map("business_trade_partner")
+}
+
+ // "sales", "marketing", "finance", "operations", "hr", "legal", "it", "product", "strategy"
+model BusinessFunction {
+  id                    Int @id @default(autoincrement())
+  name                  String  @unique      
+  description           String
+  function_type         String?  // "primary", "secondary", "management", "strategic"
+  is_core_function      Int? @default(0)
+  // industry
+
+  ledgers               Ledger[]
+  expenses              ExpensePayment[]
+  metrics               BusinessFunctionMetric[]
+  procedures            BusinessFunctionProcedure[]
+  human_resources       ContactBusinessFunctionCapability[]
+
+  @@schema("drmg")
+  @@map("business_functions")
+}
+
+model BusinessIdea {
+  id            Int           @id @default(autoincrement())
+  title         String        @unique
+  description   String
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  categories    Category[]    @relation("CategoryToIdea")
+  jtbd          JTBDInterview[]
+  valueHorizon  IdeaValueAnalysis[]
+
+  @@schema("drmg")
+  @@map("business_ideas")
+}
+
+model Category {
+  id          Int           @id @default(autoincrement())
+  name        String        @unique
+  description String?
+  ideas       BusinessIdea[] @relation("CategoryToIdea")
+
+  @@schema("drmg")
+  @@map("idea_categories")
+}
+
+model IdeaValueAnalysis {
+  id                Int          @id @default(autoincrement())
+  riskFactor        Float        // Range between 0 to 1
+  expectedReturns   Float        // Anticipated value returns
+  timeHorizon       String       // Could be 'short-term', 'medium-term', 'long-term'
+  businessIdea      BusinessIdea @relation(fields: [businessIdeaId], references: [id])
+  businessIdeaId    Int
+
+  @@schema("drmg")
+  @@map("business_idea_analysis")
+}
+
+model JTBDInterview {
+  id            Int          @id @default(autoincrement())
+  date          DateTime     @default(now())
+  respondent    String
+  job           String
+  painPoints    String
+  outcome       String
+  businessIdea  BusinessIdea @relation(fields: [businessIdeaId], references: [id])
+  businessIdeaId Int
+
+  @@schema("drmg")
+  @@map("business_jtbd_interviews")
+}
+
+
+model BusinessFunctionRole {
+  id                        Int      @id @default(autoincrement())
+  name                      String   @db.VarChar(100)                // NHS
+  business_function_id      Int
+  
+  median_annual_salary      Float?           
+  median_hourly_salary      Float?           
+  high_annual_salary        Float?           
+  high_hourly_salary        Float?     
+
+  drmg_org_id               Int?      
+
+  // break salary down by country, region and date range later
+  @@map(name: "business_function_roles")
+  @@schema("drmg")
+}
+
+
+model BusinessFunctionProcedure {
+  id                        Int @id @default(autoincrement())
+  name                      String  @unique
+  description               String? @db.Text
+  essential_ind             Int? @default(0)
+
+  mindset                   String?             // required mindset - DW  PD  FF  AH 
+  ai_agent                  String?             // best AI agent to do the job
+  ai_agent_rating           Int? @default(0)    // 0-5 rating for success (needs quantifying rules)
+
+  business_function         BusinessFunction @relation(fields: [business_function_id], references: [id])
+  business_function_id      Int
+  ledger                    Ledger? @relation(fields: [ledger_id], references: [id])
+  ledger_id                 Int?
+
+  inputs                    String?       // What resources, information, or materials are required to start the process.
+  action_trigger            String?       // what triggers the action
+  action_schedule           String?       // daily, weekly, monthly, quarterly, yearly, etc.
+  
+  // Methods
+  process_steps             String?       // Each action or task that takes place within the process, often represented as a flowchart or diagram 
+  step_ownership_roles      String?       // Which roles are responsible for each step of the process
+  risks_and_controls        String?       // Any potential issues that could arise during the process, and how they are managed or mitigated
+
+  outputs                   String?       // What the process produces or achieves.
+  dependencies              String?       // Dependencies: Other processes that this process relies on or that rely on this process
+
+  // Targeted Industry
+  industry_specific_ind     Int? @default(0)
+  industry                  String?
+
+  // Meta
+  meta_status               String? @default("draft")   // "draft", "active", "retired"
+  meta_version              Int?    @default(0)         // The version number of the process map or model.
+  meta_changelog            String? @db.Text            // Records of changes made to the process, including what was changed, who changed it, and why it was changed.
+  meta_comments             String? @db.Text            // Any comments or notes about the process.
+  process_map_exists_ind    Int? @default(0)            // 0 = no, 1 = yes
+  process_map_rating        Int? @default(0)            // 0 - 5
+
+
+  // quality / flow control
+  // Primary KPI used to measure the effectiveness and efficiency of the process
+  metrics                   BusinessFunctionMetric[]
+  action_triggers           MetricResultBenchmark[]
+
+  drmg_org_id               Int?
+  created_at                DateTime @default(now())
+  updated_at                DateTime @updatedAt
+  created_user_id           String?             
+  updated_user_id           String?            
+
+  @@schema("drmg")
+  @@map("business_function_procedures")
+}
+
+model AiPrompts {
+  id                                  Int @id @default(autoincrement())
+  title                               String @unique
+  prompt                              String @db.Text
+  
+  notes                               String? @db.Text
+  discipline                          String? @db.Text  // Personal, Health, Business, Engineering, Science
+  function                            String? @db.VarChar(100)  // Sales, Marketing, Finance, HR, etc.
+  industry                            String? @db.VarChar(100)
+  tags                                String? @db.Text  
+  
+  drmg_org_id                         Int?
+
+  @@schema("drmg")
+  @@map("ai_prompts")
+}
+
+
+//////////////// FINANCIALS ////////////////////
+
+model Ledger {
+  id                    Int      @id @default(autoincrement())
+  code                  String   @unique // "1000", "2000", etc.
+  parentCode            String   // "1000", "2000", etc.
+  type                  String   // "debit" or "credit" or "metric"
+  category              String   //  expense, revenue, asset, liability, equity, metric
+  description           String
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  parentLedger          Ledger?  @relation("ParentLedger", fields: [parentCode], references: [code])
+  childLedgers          Ledger[] @relation("ParentLedger")
+
+  businessFunction      BusinessFunction @relation(fields: [businessFunctionId], references: [id])
+  businessFunctionId    Int  
+
+  businessProcedures    BusinessFunctionProcedure[]
+  chargeTypes           ChargeType[]
+  recurringExpenses     RecurringExpense[]
+  expenses              ExpensePayment[]
+
+  drmg_org_id           BigInt?
+
+  @@schema("drmg")
+  @@map("ledger")
+}
+
+model RecurringExpense {
+  id                  Int      @id @default(autoincrement())
+
+  business            Organisation @relation("BusinessRecurringExpenses", fields: [business_id], references: [id])
+  business_id         Int  
+
+  creditor            Organisation  @relation("CreditorRecurringExpenses", fields: [creditor_id], references: [id])
+  creditor_id         Int
+
+  ledger              Ledger  @relation(fields: [ledger_id], references: [id])
+  ledger_id           Int
+
+  name                String
+  description         String
+  frequency           String   // "weekly", "monthly", "quarterly", "annually"
+  interval            Int      // e.g., every 2 weeks, every 3 months
+  next_due_date       DateTime  // use logic to update after each period
+  created_at          DateTime @default(now())
+  updated_at          DateTime @updatedAt
+
+  expenses            ExpensePayment[]
+  drmg_org_id         Int?
+  
+  @@unique([name, business_id])
+  @@schema("drmg")
+  @@map("recurring_expense")
+}
+
+
+model ExpensePayment {
+  id                    Int      @id @default(autoincrement())
+  type                  String   @default("actual")               // "budget" or "actual"
+
+  business              Organisation @relation("BusinessExpenses", fields: [business_id], references: [id])
+  business_id           Int  
+  drmg_org_id           Int?
+
+  business_function_id  Int?  
+  businessFunction      BusinessFunction? @relation(fields: [business_function_id], references: [id])
+
+  ledger                Ledger  @relation(fields: [ledger_id], references: [id])
+  ledger_id             Int
+  creditor              Organisation?  @relation("CreditorExpenses",fields: [creditor_id], references: [id])
+  creditor_id           Int?  
+  
+  name                  String
+  notes                 String?
+  amount                Float
+  date_paid             DateTime
+
+  date_due              DateTime?
+  invoice_no            String?
+  created_at            DateTime @default(now())
+  updated_at            DateTime @updatedAt
+
+  recurring_expense     RecurringExpense? @relation(fields: [recurring_expense_id], references: [id])
+  recurring_expense_id  Int?
+  
+  resource_hours        ExpenseResourceHour[]
+  material_items        ExpenseMaterialItem[]
+
+
+  @@unique([ledger_id, date_paid, type, business_id, name])
+  @@schema("drmg")
+  @@map("expense_payments")  
+}
+
+// this should be an appointment time
+model ExpenseResourceHour {
+  id                    Int      @id @default(autoincrement())
+  
+  expense               ExpensePayment @relation(fields: [expense_id], references: [id])
+  expense_id            Int
+  
+  // Process Workflow
+
+  // Human Resource
+
+  name                  String
+  description           String?
+  unit_quantity         Float
+  unit_rate             Float
+  value_amount          Float
+
+  drmg_org_id           Int?
+
+  @@schema("drmg")
+  @@map("expense_resource_hours")  
+}
+
+model ExpenseMaterialItem {
+  id                    Int      @id @default(autoincrement())
+  
+  expense               ExpensePayment @relation(fields: [expense_id], references: [id])
+  expense_id            Int
+  
+  name                  String
+  description           String?
+  unit_quantity         Float
+  unit_cost             Float
+  value_amount          Float
+  drmg_org_id           Int?
+
+  @@schema("drmg")
+  @@map("expense_material_items")  
+}
+
+
+// model Predictions and Convictions 
+// do predictions become convictions what value are they
+// model Decision
+// model Question
+// model Checklist
+// model ChecklistItem
+
+//////////////// WAREHOUSE ////////////////////
+
+model BusinessAdminAnalysis {
+  id                        Int       @id @default(autoincrement())
+  report_start_date         DateTime  @db.Date                        
+  report_end_date           DateTime  @db.Date
+  report_period             String    @db.VarChar(50)   // week, month, quarter, year
+  vendor_id                 BigInt
+  site_id                   BigInt
+  site_name                 String?   @db.VarChar(50)
+  employee_id               BigInt
+  employee_name             String?   @db.VarChar(50)
+
+  business_function_id      Int?
+  business_function_name    String?             // Accounting, Marketing, Customer Success etc
+  business_procedure_id     Int?                // - 1 = all , related types, primary, supporting, management (operational), strategic (executive), unstructured
+  business_procedure        String?             // Job (content creation and advertising spend for marketing)
+  labour_hours              Float?              // 0.00
+  labour_cost               Float?              // 0.00
+
+  drmg_org_id               Int?
+
+  @@map(name: "business_admin_analysis")
+  @@schema("practice")
+}
+
+// Measure the Performance of key business processes / procedures
+// one process can have many related metrics to judge its performance
+model BusinessFunctionMetric {
+  id                        Int @id @default(autoincrement())
+  name                      String  @unique
+  description               String?   
+
+  method                    String?   // how is data collected and calculated        
+  measure_type              String?   // count, percentage, sum, average, etc.
+  measure_unit              String?   // dollars, hours, etc.
+  improve_with              String?   // increase, decrease
+
+  business_function         BusinessFunction @relation(fields: [business_function_id], references: [id])
+  business_function_id      Int
+
+  procedure_measured        BusinessFunctionProcedure? @relation(fields: [procedure_measured_id], references: [id])
+  procedure_measured_id     Int?    // multiple metrics per process so not @unique
+  
+  default_benchmark         Float?              // what is the default benchmark for this metric
+  solution_workflow         ProcedureFailureWorkflow?        
+
+  industry_specific_ind     Int? @default(0)
+  industry                  String?
+
+  results                   BusinessMetricResult[]
+  benchmarks                MetricResultBenchmark[]
+
+  drmg_org_id               Int?
+
+  @@schema("drmg")
+  @@map("business_function_metrics")
+}
+
+// TODO: DROP THIS TABLE?
+// model BusinessFunctionMetricTrigger {
+//   id                      Int @id @default(autoincrement())
+//   name                    String  @unique
+//   threshold               Float?  @default(0) // what is the threshold for this trigger to be activated
+
+//   metric                  BusinessFunctionMetric  @relation(fields: [metric_id], references: [id])               
+//   metric_id               Int
+
+//   @@schema("drmg")
+//   @@map("business_metric_triggers")
+// }
+
+// TODO: DROP THIS TABLE?
+// if a procedure fails what workflow needs to be triggered to solve the problem?
+model ProcedureFailureWorkflow {
+  id                      Int @id @default(autoincrement())
+  name                    String  @unique
+  solution_method         String? @db.Text            // markdown solution.            
+
+  failing_metric          BusinessFunctionMetric  @relation(fields: [failing_metric_id], references: [id])               
+  failing_metric_id       Int @unique   
+
+  @@schema("drmg")
+  @@map("business_metric_failure_workflows")
+}
+
+// NOTE USE DRMG ORG ID AS FALLBACK
+model MetricResultBenchmark {
+  id                      Int @id @default(autoincrement())
+
+  business                Organisation @relation(fields: [drmg_org_id], references: [id])
+  drmg_org_id             Int                                                               
+
+  metric                  BusinessFunctionMetric @relation(fields: [metric_id], references: [id])  // definition
+  metric_id               Int  
+
+  decision                Decision? @relation(fields: [decision_id], references: [id])  // definition
+  decision_id             Int?
+
+  grouped_by              String        // "business", "site", "role", "person"
+  group_entity            String        // "Better Practice", "Chiswick", "Provider", "Nate"
+  group_entity_id         BigInt?       // business_id, site_id, role_id, person_id
+  measured_item           String?       // (All - Null) or Accounting, Finance, HR, etc.
+
+  trigger_type            String        // success or failure
+  value_type              String?       // "number", "percentage", "currency", "boolean", "text"
+  threshold_value         Float
+  
+  threshold_procedure     BusinessFunctionProcedure? @relation(fields: [threshold_procedure_id], references: [id])
+  threshold_procedure_id  Int? 
+
+  date_from               DateTime
+  date_to                 DateTime
+  measured_period         String        // "snapshot", "daily", "weekly", "monthly", "quarterly", "yearly", "custom"
+  day_of_week             String?       // "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"
+  period_number           Int?          // 1-12 month or 1-4 quarter or 1-52 week
+
+
+  created_at              DateTime @default(now())
+  updated_at              DateTime @updatedAt
+
+  @@schema("warehouse")
+  @@map("business_metric_benchmarks")
+}
+
+
+// analysis
+model BusinessMetricResult {
+  id                    Int @id @default(autoincrement())
+
+  business              Organisation @relation(fields: [business_id], references: [id])
+  business_id           Int  
+  drmg_org_id           Int?
+
+  metric                BusinessFunctionMetric @relation(fields: [metric_id], references: [id])
+  metric_id             Int  
+
+  data_type             String        // Customer, Condition   - what is getting measured
+  data_source           String        // gensolve              - where is the data coming from
+  grouped_by            String        // "business", "site", "role", "person"
+  group_entity          String        // "Better Practice", "Chiswick", "Provider", "Nate"
+  group_entity_id       BigInt?          // business_id, site_id, role_id, person_id
+
+  measured_item         String?       // (All - Null) or Accounting, Finance, HR, etc.
+
+  value                 Float
+  value_type            String?       // "number", "percentage", "currency", "boolean", "text"
+  
+  date                  DateTime
+  date_year             Int?
+  period_number         Int?          // 1-12 month or 1-4 quarter or 1-52 week
+  
+  measured_period       String        // "snapshot", "daily", "weekly", "monthly", "quarterly", "yearly", "custom"
+  day_of_week           String?       // "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"
+
+
+  @@unique([business_id, metric_id, data_type, data_source, date, grouped_by, group_entity_id, measured_period, measured_item])
+  @@schema("warehouse")
+  @@map("business_metric_results")
+}
+
+
+model ClientFact {
+  id                        Int       @id @default(autoincrement())
+  import_id                 BigInt       @unique  
+  infusionsoft_id           BigInt       @default(0)
+  infusionsoft_forget_ind   BigInt?      @default(0)
+  infusionsoft_confirm_ind  Int?      @default(0)
+  date_created              DateTime  @db.Timestamp(6)
+  year_created              Int?      @default(0)
+  month_created             Int?      @default(0)
+  week_created              Int?      @default(0)
+  date_updated              DateTime  @db.Timestamp(6)
+  vendor_id                 BigInt
+  organisation_id           BigInt
+  nhi_number                String?   @db.VarChar(50)
+  title_id                  BigInt?
+  title                     String?   @db.VarChar(10)
+  sex                       String?   @db.VarChar(1)
+  first_name                String?   @db.VarChar(100)
+  last_name                 String?   @db.VarChar(100)
+  known_as                  String?   @db.VarChar(100)
+  middle_name               String?   @db.VarChar(100)
+  maiden_name               String?   @db.VarChar(100)
+  date_of_birth             DateTime? @db.Date
+  phone                     String?   @db.VarChar(100)
+  mobile                    String?   @db.VarChar(100)
+  email                     String?   @db.VarChar(100)
+  home_site_id              BigInt?
+  home_site                 String?   @db.VarChar(100)
+  employer_id               BigInt?      @default(-1)
+  employer_name             String?   @db.VarChar(255) @default("Unknown")
+  employer_email            String?   @db.VarChar(255)
+  first_names               String?   @db.VarChar(255)
+  why_choose_us_id          BigInt?      @default(-1)
+  why_choose_us             String?   @db.VarChar(255) @default("Unknown")
+  referral_source_id        BigInt?      @default(-1)
+  referral_source           String?   @db.VarChar(255) @default("Unknown")
+  referred_by_type          String?   @db.VarChar(255) @default("Unknown")
+  referred_by_id            BigInt?      @default(-1)
+  medical_centre_id         BigInt?      @default(-1)
+  medical_centre            String?   @db.VarChar(255) @default("Unknown")
+  gp_id                     BigInt?      @default(-1)
+  gp_name                   String?   @db.VarChar(255) @default("Unknown")
+  occupation_id             BigInt?      @default(-1)
+  occupation_name           String?   @db.VarChar(255) @default("Unknown")
+  health_insurer            String?   @db.VarChar(255) @default("Unknown")
+  work_intensity_id         BigInt?      @default(-1)
+  work_intensity_name       String?   @db.VarChar(255) @default("Unknown")
+  ethnic_group_id           BigInt?      @default(-1)
+  ethnic_group_name         String?   @db.VarChar(255) @default("Unknown")
+  ethnic_group_other        String?   @db.VarChar(255) 
+  home_address_street       String?   @db.VarChar(255)
+  home_address_suburb       String?   @db.VarChar(255)
+  home_address_city         String?   @db.VarChar(255)
+  home_address_state        String?   @db.VarChar(255)
+  home_address_postcode     String?   @db.VarChar(255)
+  home_address_country      String?   @db.VarChar(255)
+  unique_postal_address_ind BigInt?
+  postal_address_street     String?   @db.VarChar(255)
+  postal_address_suburb     String?   @db.VarChar(255)
+  postal_address_city       String?   @db.VarChar(255)
+  postal_address_state      String?   @db.VarChar(255)
+  postal_address_postcode   String?   @db.VarChar(255)
+  postal_address_country    String?   @db.VarChar(255)
+  inactive_ind              Int?
+  deleted_ind               Int?
+  include_in_mailouts       Int?
+  date_of_death             DateTime? @db.Date
+  timestamp_update          DateTime  @db.Timestamp(6)
+
+  // socials   ENGAGEMENT
+  social_influence_rank           Int?      @default(0)
+  social_youtube                  String?   @db.VarChar(255)
+  social_instagram                String?   @db.VarChar(255)
+  social_facebook                 String?   @db.VarChar(255)
+  social_twitter                  String?   @db.VarChar(255)
+  social_linkedin                 String?   @db.VarChar(255)
+  social_tiktok                   String?   @db.VarChar(255)
+
+  // analysis fields      
+  past_ninety_day_spend           Float?    @default(0)
+  past_annual_spend               Float?    @default(0)
+  
+  contracts_types                 String?   @db.VarChar(255)
+  membership_types                String?
+  membership_status               String?
+  conditions_problems             String?   @db.VarChar(255)
+  products_types                  String?   @db.VarChar(255)
+  class_types                     String?   @db.VarChar(255)
+
+  contracts_total                 Int?      // growth journey speciality
+  conditions_total                Int?      // standard treatment
+  class_type_total                Int?      // rehab/perform group treatment
+  cross_referral_total            Int?      // sales teamwork
+  products_total                  Int?      // retail 
+  no_show_total                   Int?      // no show
+  cancelled_total                 Int?      // cancelled
+
+  provider_last_appt              String?   @db.VarChar(255)
+  provider_next_appt              String?   @db.VarChar(255)
+  
+  date_last_condition_discharged  DateTime? @db.Date
+  date_last_condition_started     DateTime? @db.Date
+  date_next_appt                  DateTime? @db.Date
+  date_last_appt                  DateTime? @db.Date
+  date_last_no_show               DateTime? @db.Date
+  date_last_cancel                DateTime? @db.Date
+  
+  user_id                         String? @unique       // if a user of drmg
+  provider_id                     BigInt?                  // if also a provider
+  drmg_org_id                     BigInt?
+
+  @@index([last_name])
+  @@index([email])
+  @@map(name: "client_facts")
+  @@schema("warehouse")
+}
+
+
+model ClientRevenueSummary {
+  id                            Int       @id @default(autoincrement())
+  report_period                 String?   @db.VarChar(20)
+  period_number                 Int?
+  date_report_from              DateTime? @db.Date
+  date_report_to                DateTime? @db.Date
+  vendor_id                     BigInt
+  debtor_id                     BigInt?
+  debtor_name                   String?   @db.VarChar(255)
+  other_details                 String?   @db.VarChar(255)
+  related_id                    BigInt
+  client_id                     BigInt?
+  item_type                     String?   @db.VarChar(50)
+  item_type_name                String?   @db.VarChar(50)
+
+  count_quantity                Int?
+  sum_amount                    Float?
+  sum_tax_amount                Float?
+  sum_total_amount              Float?
+
+  drmg_org_id                   Int?
+
+  @@map(name: "client_revenue_summary")
+  @@schema("warehouse")
+}
+
+
+model TreatmentGoalOutcome {
+  id                             Int @id @default(autoincrement())
+  
+  owner_type                     String @db.VarChar(50)
+  
+  // UNIQUE
+  owner_id                       BigInt
+  assessment_id                  BigInt   
+  assessment_goal_id             BigInt @default(0)   
+
+  provider_id                    BigInt
+	provider_name                  String @db.VarChar(50)
+	client_id                      BigInt
+	last_name                      String @db.VarChar(50) 
+	first_name                     String @db.VarChar(50)      
+	
+	goal_type_id                   BigInt @default(0)              // COULD BE CORRECTED/UPDATED
+  goal_name                      String? @db.VarChar(255)     // COULD BE CORRECTED/UPDATED
+	goal_details                   String? @db.Text           
+	goal_activity                  String? @db.VarChar(255)     // COULD BE CORRECTED/UPDATED
+	goal_activity_details          String? @db.Text  
+	
+	estimate_appt_count            Int? @default(0)             // CREATE A BENCHMARK PER INJURY/GOAL
+  // NEED TO BE WITHIN THE GOAL TIME FRAME TO COUNT
+  current_appt_count             Int? @default(0)
+	current_appt_hours             Float? @default(0)
+
+	goal_timeframe_interval        Int? @default(0)
+	goal_timeframe_id              BigInt? @default(0)  
+	goal_timeframe                 String? @db.VarChar(255)
+	goal_start_by_date             DateTime? @db.Date
+	goal_started_date              DateTime? @db.Date
+	goal_complete_by_date          DateTime? @db.Date 
+	goal_completed_date            DateTime? @db.Date
+	goal_achieved_ind              Int? @default(0)
+	goal_deleted_ind               Int? @default(0)
+	
+  // THIS WILL BE REPEATED PER GOAL BUT COULD BE USEFUL REFERENCE FOR GOAL ANALYSIS
+	condition_problems             String? @db.VarChar(255)  // USE TO SEARCH FOR GOALS
+	
+	con_date_of_injury             DateTime? @db.Date
+  discharged_appt_count          Int? @default(0)
+  discharged_date_first_appt     DateTime? @db.Date         
+	discharged_date_discharged     DateTime? @db.Date
+	discharged_outcome_id          BigInt? @default(0)
+	discharged_outcome_type        String? @db.VarChar(255)
+	// discharged_condition_problems  String? @db.VarChar(255)
+	// discharged_outcome_details     String? @db.Text
+	// discharged_date_for_followup        DateTime? @db.Date
+	// discharged_date_followup_completed  DateTime? @db.Date
+	// auto_date_for_followup        DateTime? @db.Date
+	// auto_date_followup_completed  DateTime? @db.Date  
+
+	goal_notes                    String? @db.Text
+	goal_plan_notes               String? @db.Text
+	goal_mid_notes                String? @db.Text
+	goal_final_notes              String? @db.Text
+	goal_non_completion_notes     String? @db.Text
+  // followup_notes             String? @db.Text
+
+  goal_notes_ind                Int? @default(0)
+  goal_plan_notes_ind           Int? @default(0)
+  goal_mid_notes_ind            Int? @default(0)
+  goal_final_notes_ind          Int? @default(0)
+  goal_non_completion_notes_ind Int? @default(0)
+
+  // ESTIMATE VS ACTUAL SESSION COUNT
+  estimate_journey_days         Int? @default(0)
+  actual_journey_days           Int? @default(0)
+
+  // AGGREGRATION HELPERS
+  year_goal_started             Int? @default(0)
+  quarter_goal_started          Int? @default(0)
+  month_goal_started            Int? @default(0)
+  week_goal_started             Int? @default(0)
+  // email_out_events              Int? @default(0)
+  // message_out_events            Int? @default(0)
+
+  reprocess_data_ind            Int? @default(0)
+  timestamp_update              DateTime  @db.Timestamp(6)
+
+  drmg_org_id                   Int?
+
+  @@unique([owner_id, assessment_id, assessment_goal_id])
+  
+  @@index([provider_id, provider_name])
+  @@index([goal_type_id, goal_name])
+  @@index([goal_achieved_ind])
+  @@index([discharged_outcome_type])
+  @@index([estimate_appt_count, current_appt_count, discharged_appt_count])
+  @@index([year_goal_started, quarter_goal_started, month_goal_started, week_goal_started])
+
+  @@map(name: "treatment_goal_outcomes")
+  @@schema("warehouse")
+}
+
+
+model TreatmentAnalysis {
+  id                                  Int    @id @default(autoincrement())
+  
+  owner_type                          String @db.VarChar(50)
+  owner_id                            BigInt
+  assessment_id                       BigInt   
+  // assessment_goal_id               Int @default(0)   
+	// goal_type_id                     Int @default(0)               
+  provider_id                         BigInt
+	provider_name                       String @db.VarChar(50)
+	client_id                           BigInt
+	last_name                           String @db.VarChar(50) 
+	first_name                          String @db.VarChar(50)   
+
+	condition_problems                  String? @db.VarChar(255)
+	discharged_condition_problems       String? @db.VarChar(255)
+	last_goal_name                      String? @db.VarChar(255)
+	last_goal_activity                  String? @db.VarChar(255)
+	// goal_details                     String? @db.Text           
+	// goal_activity_details            String? @db.Text  
+	total_goals_set                     Int? @default(0)            // all goals achieved
+	total_goals_achieved                Int? @default(0)            //                Int? @default(0)            // all goals achieved
+	// goal_deleted_ind                 Int? @default(0)            // ignore if deleted
+
+  // ESTIMATE VS ACTUAL SESSION COUNT
+  total_estimate_goal_appts           Int? @default(0)            // sum of all goals appt estimates
+  clinical_appt_count                 Int? @default(0)            // running total of condition appts
+	discharged_appt_count               Int? @default(0)
+
+  // HOURS OF EFFORT
+  clinical_appt_hours                 Float? @default(0)
+  class_appt_hours                    Float? @default(0)
+  customer_support_hours              Float? @default(0)
+
+  direct_treatment_cost               Float? @default(0)
+  customer_support_cost               Float? @default(0)
+  client_revenue                      Float? @default(0)
+  third_party_revenue                 Float? @default(0)
+  third_party_name                    String? @db.VarChar(255)
+
+  // SUPPORT WITH COMMUNICATION & EDUCATION
+  impressions_email                   Int? @default(0)
+  impressions_phone                   Int? @default(0)
+  impressions_message                 Int? @default(0)
+  impressions_social_media            Int? @default(0)
+  
+  condition_referrer_type             Int?
+  condition_referrer_id               BigInt? @default(0)
+  condition_referrer_name             String? @db.VarChar(255)
+  
+  client_referrer_type                Int?
+  client_referrer_id                  BigInt? @default(0)
+  client_referrer_name                String? @db.VarChar(255)
+
+  // DATES
+	con_date_of_injury                  DateTime? @db.Date
+	con_date_created                    DateTime? @db.Date
+	first_goal_start_by_date            DateTime? @db.Date
+	first_goal_started_date             DateTime? @db.Date
+	last_goal_complete_by_date          DateTime? @db.Date 
+	last_goal_completed_date            DateTime? @db.Date
+  
+	discharged_date_first_appt          DateTime? @db.Date
+	discharged_date_discharged          DateTime? @db.Date
+	discharged_date_for_followup        DateTime? @db.Date
+	discharged_date_followup_completed  DateTime? @db.Date
+	template_date_for_followup          DateTime? @db.Date          // can use injury plan to trigger
+	
+	discharge_occurrence_count          Int? @default(0)            // count of discharge records
+	discharged_providers_seen           Int? @default(0)            // count of different providers seen
+	discharged_outcome_id               BigInt? @default(0)            // condition might not yet be discharged
+	discharged_outcome_type             String? @db.VarChar(255)
+  // NOTE COMPLETION CHECKS
+  goal_notes_ind                      Int? @default(0)            // is there content in the notes
+	goal_plan_notes_ind                 Int? @default(0)
+	goal_mid_notes_ind                  Int? @default(0)
+	goal_final_notes_ind                Int? @default(0)
+	goal_non_completion_notes_ind       Int? @default(0)
+	discharge_outcome_details_ind       Int? @default(0)
+  followup_notes_ind                  Int? @default(0)
+
+  // JOURNEY SPAN
+  goal_estimate_journey_days          Int? @default(0)
+  goal_actual_journey_days            Int? @default(0)
+  discharge_journey_days              Int? @default(0)
+  current_appt_span_days              Int? @default(0)
+
+  // AGGREGATE
+  year_goal_started                   Int? @default(0)
+  quarter_goal_started                Int? @default(0)
+  month_goal_started                  Int? @default(0)
+  week_goal_started                   Int? @default(0)
+
+  reprocess_data_ind                  Int? @default(0)
+  timestamp_update                    DateTime  @db.Timestamp(6)
+
+  drmg_org_id                         BigInt?
+
+  @@unique([owner_id, assessment_id])
+  
+  @@index([provider_id, provider_name])
+  @@index([year_goal_started, quarter_goal_started, month_goal_started, week_goal_started])
+
+  @@map(name: "treatment_analysis")
+  @@schema("warehouse")
+}
+
+
+model Performance {
+  id                         Int      @id @default(autoincrement())
+  purpose                    String   @db.VarChar(50)
+  date_year_starts           DateTime @db.Date
+  analysis_type              String?  @db.VarChar(50)
+  site_name                  String?  @db.VarChar(255)
+  subject_heading            String?  @db.VarChar(255)
+  subject_ledger             String?  @db.VarChar(255)
+  subject_sub_heading        String?  @db.VarChar(255)
+  subject_sub_heading_type   String?  @db.VarChar(255)
+  subject_sub_heading_ledger String?  @db.VarChar(255)
+  subject_sub_heading_id     BigInt?
+  week_01_value              Float?
+  week_02_value              Float?
+  week_03_value              Float?
+  week_04_value              Float?
+  week_05_value              Float?
+  week_06_value              Float?
+  week_07_value              Float?
+  week_08_value              Float?
+  week_09_value              Float?
+  week_10_value              Float?
+  week_11_value              Float?
+  week_12_value              Float?
+  week_13_value              Float?
+  week_14_value              Float?
+  week_15_value              Float?
+  week_16_value              Float?
+  week_17_value              Float?
+  week_18_value              Float?
+  week_19_value              Float?
+  week_20_value              Float?
+  week_21_value              Float?
+  week_22_value              Float?
+  week_23_value              Float?
+  week_24_value              Float?
+  week_25_value              Float?
+  week_26_value              Float?
+  week_27_value              Float?
+  week_28_value              Float?
+  week_29_value              Float?
+  week_30_value              Float?
+  week_31_value              Float?
+  week_32_value              Float?
+  week_33_value              Float?
+  week_34_value              Float?
+  week_35_value              Float?
+  week_36_value              Float?
+  week_37_value              Float?
+  week_38_value              Float?
+  week_39_value              Float?
+  week_40_value              Float?
+  week_41_value              Float?
+  week_42_value              Float?
+  week_43_value              Float?
+  week_44_value              Float?
+  week_45_value              Float?
+  week_46_value              Float?
+  week_47_value              Float?
+  week_48_value              Float?
+  week_49_value              Float?
+  week_50_value              Float?
+  week_51_value              Float?
+  week_52_value              Float?
+  owner_id                   BigInt?
+  owner_name                 String?  @db.VarChar(25)
+  date_created               DateTime @default(now())
+  date_updated               DateTime @updatedAt
+
+  drmg_org_id               BigInt?
+
+  @@unique([purpose, date_year_starts, analysis_type, site_name, subject_heading, subject_sub_heading])
+  @@map(name: "performance")
+  @@schema("warehouse")
+}
+
+model ProviderFact {
+  id                      Int       @id @default(autoincrement())
+  report_period           String?   @db.VarChar(20)
+  period_number           Int?
+  date_report_from        DateTime? @db.Date
+  date_report_to          DateTime? @db.Date
+  provider_id             BigInt
+  provider_name           String?   @db.VarChar(200)
+  no_show_dur             Decimal?  @default(0) @db.Decimal
+  no_show_count           Int?      @default(0)
+  in_service_dur          Decimal?  @default(0) @db.Decimal
+  in_service_count        Int?      @default(0)
+  prv_dur                 Decimal?  @default(0) @db.Decimal
+  prv_count               Int?      @default(0)
+  client_dur              Decimal?  @default(0) @db.Decimal
+  client_count            Int?      @default(0)
+  class_dur               Decimal?  @default(0) @db.Decimal
+  class_count             Int?      @default(0)
+  total_count             Int?      @default(0)
+  acc_schedule_rev        Float?    @default(0)
+  adjusted                Float?    @default(0)
+  appt_charge_rev         Float?    @default(0)
+  client_charge_rev       Float?    @default(0)
+  contract_rev            Float?    @default(0)
+  insurer_schedule_rev    Float?    @default(0)
+  product_rev             Float?    @default(0)
+  rejected                Float?    @default(0)
+  unique_client_count     Int?      @default(0)
+  dna_cancel_rev          Float?    @default(0)
+  available_dur           Decimal?  @default(0) @db.Decimal
+  utc_date_report_from    DateTime? @db.Timestamp(6)
+  utc_date_report_to      DateTime? @db.Timestamp(6) 
+
+  kpi_saturation          Float?    @default(0)  // client hours / (hours available - class hours - no show hours)
+  kpi_billable_saturation Float?    @default(0)  // client hours + inservice / (hours available - class hours - no show hours)
+
+  provider   Provider @relation(fields: [provider_id], references: [import_id])
+
+  drmg_org_id             BigInt?
+
+  @@map(name: "provider_facts")
+  @@schema("warehouse")
+}
+
+
+model DebtorClientMap {
+  debtor_id                 BigInt  
+  client_id                 BigInt  
+  drmg_org_id               Int?
+
+  @@id([debtor_id, client_id])
+  @@schema("warehouse")
+	@@map("map_debtors_clients")
+}
+
+
+// *********  SOFTWARE ENGINEERING AND PRODUCTS ANALYSIS  ********** //
+
+// CRM, CMS, ERP, Accounting, etc.
+model SoftwareProductType {
+  id                    Int @id @default(autoincrement())
+  name                  String  @unique
+
+  products              SoftwareProduct[]
+
+  @@schema("drmg")
+  @@map("software_product_types")
+}
+
+// Tools like Hubspot, Salesforce, etc.
+model SoftwareProduct{
+  id                      Int @id @default(autoincrement())
+  name                    String  @unique
+  url                     String?
+  ai_rating               Int    @default(0) // 0-5
+  blockchain_rating       Int    @default(0) // 0-5
+  api_rating              Int    @default(0) // 0-5
+  api_integration_count   Int    @default(0)
+  description             String? @db.Text
+  use_case_notes          String? @db.Text
+  has_free_version        Int     @default(0)
+  base_price              Float?              // initial tier
+  pricing_notes           String? @db.Text    
+
+  primary_product_type    SoftwareProductType? @relation(fields: [product_type_id], references: [id])
+  product_type_id         Int?
+
+  functions               ProductSoftwareFunction[]
+  integrated_products     SoftwareIntegration[]@relation("integrated_products")
+  reverse_integrations    SoftwareIntegration[]@relation("reverse_integrations")
+
+  @@schema("drmg")
+  @@map("software_products")
+}
+
+// Product Features
+
+model SoftwareFunction {
+  id                    Int @id @default(autoincrement())
+  name                  String  @unique
+  description           String?  @db.Text
+
+  products              ProductSoftwareFunction[]
+
+  @@schema("drmg")
+  @@map("software_functions")
+}
+
+model ProductSoftwareFunction {
+  id                    Int @default(autoincrement())
+
+  product               SoftwareProduct @relation(fields: [product_id], references: [id])
+  product_id            Int
+
+  software_function     SoftwareFunction @relation(fields: [software_function_id], references: [id])
+  software_function_id  Int
+
+  @@id([product_id, software_function_id])
+  @@schema("drmg")
+  @@map("product_software_functions")
+}
+
+
+// API Interface
+model SoftwareIntegration {
+  id                      Int @default(autoincrement())
+
+  product                 SoftwareProduct @relation("integrated_products", fields: [product_id], references: [id])
+  product_id              Int
+
+  // or govt service such as ACC
+  integrated_product      SoftwareProduct @relation("reverse_integrations", fields: [integrated_product_id], references: [id])
+  integrated_product_id   Int
+  rating                  Int    @default(0) // 0-5
+  notes                   String?
+
+  @@id([product_id, integrated_product_id])
+  @@schema("drmg")
+  @@map("software_integrations")
+
+}
+
+model SoftwareEngineeringFunction {
+  id                    Int @id @default(autoincrement())
+  name                  String  @unique
+  description           String
+  // industry
+  procedures            SoftwareEngineeringProcedure[]
+
+  @@schema("drmg")
+  @@map("software_engineering_functions")
+}
+
+
+model SoftwareEngineeringProcedure {
+  id                                  Int @id @default(autoincrement())
+  name                                String  @unique
+  description                         String
+  SoftwareEngineeringFunction         SoftwareEngineeringFunction @relation(fields: [software_engineering_function_id], references: [id])
+  software_engineering_function_id    Int
+
+  ai_agent                            String?
+  ai_agent_rating                     Int? @default(0) // 0-5
+  // industry
+
+  @@schema("drmg")
+  @@map("software_engineering_procedures")
+}
+
+
+// ********* END OF SOFTWARE ENGINEERING AND PRODUCTS ANALYSIS  ********** //
+
+model Board {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  userId    String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  User      User     @relation(fields: [userId], references: [id])
+  Column    Column[]
+
+  @@unique([name, userId])
+  @@schema("drmg")
+}
+
+model Column {
+  name      String   @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  id        Int      @id @default(autoincrement())
+  boardId   Int
+  board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  Task      Task[]
+
+  @@unique([name, boardId])
+  @@schema("drmg")
+}
+
+model Task {
+  title       String    @db.VarChar(255)
+  description String?
+  statusName  String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  id          Int       @id @default(autoincrement())
+  boardId     Int
+  order       Int       @default(autoincrement())
+  SubTask     SubTask[]
+  status      Column    @relation(fields: [statusName, boardId], references: [name, boardId], onDelete: Cascade)
+
+  @@unique([title, boardId])
+  @@schema("drmg")
+}
+
+model SubTask {
+  title       String
+  isCompleted Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  taskId      Int
+  mainTask    Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@unique([title, taskId])
+  @@schema("drmg")
+}
+
+
+// *********** GENSOLVE IMPORTED DATA ************ //
+
+model GensolveMetaType {
+  id              Int    @id @default(autoincrement())
+  name            String
+  description     String?
+  import_id       BigInt   
+  deleted_ind     Int @default(0)
+  active_ind      Int @default(0)
+  date_updated    DateTime? @db.Timestamp(6)
+  type_id         BigInt
+
+  @@map(name: "gensolve_meta_types")
+  @@schema("practice")
+}
+
+model Site {
+  id                 Int       @id @default(autoincrement())
+  import_id          BigInt       @unique
+  vendor_id          BigInt
+  external_reference String?   @db.VarChar(100)
+  active_ind         Int
+  admin_only_ind     Int
+  date_updated       DateTime? @db.Date
+  name               String?   @db.VarChar(100)
+  trading_name       String?   @db.VarChar(100)
+  gst_number         String?   @db.VarChar(100)
+  phone              String?   @db.VarChar(100)
+  mobile             String?   @db.VarChar(100)
+  email              String?   @db.VarChar(100)
+  address            String?   @db.VarChar(100)
+  postal_address     String?   @db.VarChar(100)
+  timezone           String?   @db.VarChar(100)
+
+  incompleteExams SnapshotIncompleteExam[]
+  saturationResults SnapshotProviderSaturation[]
+
+  @@map(name: "sites")
+  @@schema("practice")
+}
+
+model ChargeType {
+  id                      Int       @id @default(autoincrement())
+  import_id               BigInt
+  code                    String?   @db.VarChar(100)
+  name                    String?   @db.VarChar(100)
+  client_appointment_type String?   @db.VarChar(100)
+  appointment_type        String?   @db.VarChar(100)
+  billing_type            String?   @db.VarChar(100)
+  date_from               DateTime? @db.Date
+  date_to                 DateTime? @db.Date
+  client_display_name     String?   @db.VarChar(100)
+  default_invoice_notes   String?   @db.VarChar(100)
+  is_dex_charge           String?   @db.VarChar(3)
+  dex_show_total_cost_ind Int?
+  dex_show_quantity_ind   Int?
+  dex_show_duration_ind   Int?
+  discount_type           String?   @db.VarChar(100)
+  date_updated            DateTime? @db.Date
+  deleted_ind             Int?
+  organisation_id         BigInt?
+  debtor                  String?   @db.VarChar(100)
+  fixed_rate              String?   @db.VarChar(100)
+  includes_tax_ind        String?   @db.VarChar(100)
+
+  ledger                  Ledger? @relation(fields: [ledger_id], references: [id])
+  ledger_id               Int?
+
+  @@map(name: "charges")
+  @@schema("practice")
+}
+
+model Provider {
+  id                 Int      @id @default(autoincrement())
+  import_id          BigInt      @unique
+  organisation_id    BigInt
+  vendor_id          BigInt
+  active_ind         Int
+  admin_only_ind     Int
+  external_id        String?  @db.VarChar(100)
+  provider_type_name String?  @db.VarChar(100)
+  title              String?  @db.VarChar(100)
+  first_name         String?  @db.VarChar(100)
+  middle_name        String?  @db.VarChar(100)
+  last_name          String?  @db.VarChar(100)
+  code               String?  @db.VarChar(100)
+  system_user_id     BigInt
+  system_user_name   String?  @db.VarChar(100)
+  phone              String?  @db.VarChar(100)
+  mobile             String?  @db.VarChar(100)
+  email              String?  @db.VarChar(100)
+  address            String?  @db.VarChar(100)
+
+  contractor_ind     Int?
+  
+  external_ref       String?  @db.VarChar(100)
+  image_url          String?  @db.VarChar(255)
+  
+  date_created       DateTime @db.Timestamp(6)
+  date_updated       DateTime @db.Timestamp(6)
+  
+  client_id          BigInt?
+
+  conditions Condition[]
+  saturationResults SnapshotProviderSaturation[]
+  performanceResults ProviderFact[]
+  appointments Appointment[]
+  appointmentCharges AppointmentCharge[]
+  clientAppointments ClientAppointment[]
+  conditionAppointments ConditionAppointment[]
+
+  @@map(name: "providers")
+  @@schema("practice")
+}
+
+model Client {
+  id                        Int       @id @default(autoincrement())
+  import_id                 BigInt       @unique  
+  infusionsoft_id           BigInt
+  date_created              DateTime  @db.Timestamp(6)
+  date_updated              DateTime  @db.Timestamp(6)
+  vendor_id                 BigInt
+  organisation_id           BigInt
+  nhi_number                String?   @db.VarChar(50)
+  title_id                  BigInt?
+  title                     String?   @db.VarChar(10)
+  sex                       String?   @db.VarChar(1)
+  first_name                String?   @db.VarChar(100)
+  last_name                 String?   @db.VarChar(100)
+  known_as                  String?   @db.VarChar(100)
+  middle_name               String?   @db.VarChar(100)
+  maiden_name               String?   @db.VarChar(100)
+  date_of_birth             DateTime? @db.Date
+  phone                     String?   @db.VarChar(100)
+  mobile                    String?   @db.VarChar(100)
+  email                     String?   @db.VarChar(100)
+  home_site_id              BigInt?
+  home_site                 String?   @db.VarChar(100)
+  home_address              String?   @db.VarChar(255)
+  work_address              String?   @db.VarChar(255)
+  postal_address            String?   @db.VarChar(255)
+  employer_id               BigInt?      @default(-1)
+  employer_name             String?   @db.VarChar(255) @default("Unknown")
+  employer_email            String?   @db.VarChar(255)
+  first_names               String?   @db.VarChar(255)
+  why_choose_us_id          BigInt?      @default(-1)
+  why_choose_us             String?   @db.VarChar(255) @default("Unknown")
+  referral_source_id        BigInt?      @default(-1)
+  referral_source           String?   @db.VarChar(255) @default("Unknown")
+  referred_by_type          String?   @db.VarChar(255) @default("Unknown")
+  referred_by_id            BigInt?      @default(-1)
+  medical_centre_id         BigInt?      @default(-1)
+  medical_centre            String?   @db.VarChar(255) @default("Unknown")
+  gp_id                     BigInt?      @default(-1)
+  gp_name                   String?   @db.VarChar(255) @default("Unknown")
+  occupation_id             BigInt?      @default(-1)
+  occupation_name           String?   @db.VarChar(255) @default("Unknown")
+  health_insurer            String?   @db.VarChar(255) @default("Unknown")
+  work_intensity_id         BigInt?      @default(-1)
+  work_intensity_name       String?   @db.VarChar(255) @default("Unknown")
+  ethnic_group_id           BigInt?      @default(-1)
+  ethnic_group_name         String?   @db.VarChar(255) @default("Unknown")
+  ethnic_group_other        String?   @db.VarChar(255) 
+  home_address_street       String?   @db.VarChar(255)
+  home_address_suburb       String?   @db.VarChar(255)
+  home_address_city         String?   @db.VarChar(255)
+  home_address_state        String?   @db.VarChar(255)
+  home_address_postcode     String?   @db.VarChar(255)
+  home_address_country      String?   @db.VarChar(255)
+  unique_postal_address_ind BigInt?
+  postal_address_street     String?   @db.VarChar(255)
+  postal_address_suburb     String?   @db.VarChar(255)
+  postal_address_city       String?   @db.VarChar(255)
+  postal_address_state      String?   @db.VarChar(255)
+  postal_address_postcode   String?   @db.VarChar(255)
+  postal_address_country    String?   @db.VarChar(255)
+  inactive_ind              BigInt?
+  deleted_ind               BigInt?
+  include_in_mailouts       BigInt?
+  date_of_death             DateTime? @db.Date
+  timestamp_update          DateTime  @db.Timestamp(6)
+  class_type_total          BigInt?
+  class_types               String?   @db.VarChar(255)
+  conditions_problems       String?   @db.VarChar(255)
+  conditions_total          BigInt?
+  contracts_total           BigInt?
+  contracts_types           String?   @db.VarChar(255)
+  date_last_appt            DateTime? @db.Date
+  date_next_appt            DateTime? @db.Date
+  membership_status         String?
+  membership_types          String?
+  products_total            BigInt?
+  products_types            String?   @db.VarChar(255)
+  cross_referral_total      BigInt?
+  provider_last_appt        String?   @db.VarChar(255)
+  provider_next_appt        String?   @db.VarChar(255)
+
+  actionItems               ClientActionItem[]
+  appointments              Appointment[]
+  clientAppointments        ClientAppointment[]
+
+  user                      User?  @relation(fields: [user_id], references: [id])
+  user_id                   String? @unique
+
+  @@index([last_name])
+  @@index([email])
+  @@map(name: "clients")
+  @@schema("practice")
+}
+
+model InfusionsoftClient {
+  id            Int    @id @default(autoincrement())
+  first_name    String?   @db.VarChar(100)
+  last_name     String?   @db.VarChar(100)
+  date_of_birth DateTime? @db.Date
+  email         String?   @db.VarChar(100)
+
+  @@index([last_name, email])
+  @@map(name: "infusionsoft_clients")
+  @@schema("practice")
+}
+
+model InfusionsoftClientNoMarketing {
+  id            Int    @id @default(autoincrement())
+  first_name    String?   @db.VarChar(100)
+  last_name     String?   @db.VarChar(100)
+  date_of_birth DateTime? @db.Date
+  email         String?   @db.VarChar(100)
+
+  @@index([last_name, email])
+  @@map(name: "infusionsoft_clients_no_marketing")
+  @@schema("practice")
+}
+
+model AppointmentCharge {
+  id                             Int       @id @default(autoincrement())
+  import_id                      BigInt
+  deleted_ind                    Int
+  appointment_id                 BigInt
+  vendor_id                      BigInt
+  organisation_id                BigInt
+  site_id                        BigInt
+  provider_id                    BigInt
+  client_id                      BigInt
+  date_appt                      DateTime  @db.Timestamp(6)
+  date_updated                   DateTime? @db.Timestamp(6)
+  appointment_status_indicator   Int?
+  appointment_status_name        String?   @db.VarChar(200)
+  charge_type_id                 BigInt
+  charge_type_name               String?   @db.VarChar(200)
+  charge_type_code               String?   @db.VarChar(200)
+  quantity                       Int?
+  client_amount                  Float?  
+  client_tax_amount              Float?  
+  paid_by_amount                 Float?  
+  paid_by_tax_amount             Float?  
+  paid_by_id                     BigInt?
+  invoiced_amount                Float? 
+  invoiced_tax_amount            Float? 
+  paid_by_invoiced_amount        Float? 
+  paid_by_invoiced_tax_amount    Float? 
+  initial_consultation_indicator Int?
+
+  report_duration_hours          Float?  @default(0)
+  report_provider_hourly_rate    Float?  @default(0)
+  report_provider_cost           Float?  @default(0)
+
+  reprocess_ind                  Int?     @default(0)
+
+  provider Provider @relation(fields: [provider_id], references: [import_id])
+
+  @@map(name: "appointment_charges")
+  @@schema("practice")
+}
+
+model ClientAppointment {
+  id                           Int       @id @default(autoincrement())
+  import_id                    BigInt
+  deleted_ind                  BigInt
+  vendor_id                    BigInt
+  organisation_id              BigInt
+  site_id                      BigInt
+  site_name                    String?   @db.VarChar(200)
+  provider_id                  BigInt
+  provider_name                String?   @db.VarChar(200)
+  start_datetime               DateTime? @db.Timestamp(6)
+  date_updated                 DateTime? @db.Timestamp(6)
+  client_id                    BigInt
+  client_name                  String?   @db.VarChar(200)
+  provider_duration            Int?
+  appointment_status_indicator Int?
+  appointment_status_name      String?   @db.VarChar(200)
+  dna_cancelled_amount         Decimal?  @db.Decimal
+  dna_cancelled_tax_amount     Decimal?  @db.Decimal
+  charge_amount                Decimal?  @db.Decimal
+  charge_tax_amount            Decimal?  @db.Decimal
+  schedule_claim_amount        Decimal?  @db.Decimal
+  schedule_claim_tax_amount    Decimal?  @db.Decimal
+
+  client   Client @relation(fields: [client_id], references: [import_id])
+  provider Provider @relation(fields: [provider_id], references: [import_id])
+
+  @@map(name: "appointment_clients")
+  @@schema("practice")
+}
+
+model ConditionAppointment {
+  id                           Int      @id @default(autoincrement())
+  appointment_id               BigInt
+  vendor_id                    BigInt
+  condition_id                 BigInt
+  condition_type               String?  @db.VarChar(200)
+  condition_type_name          String?  @db.VarChar(200)
+  start_date_time              DateTime @db.Timestamp(6)
+  provider_duration            Int?
+  client_charge                Decimal? @db.Decimal
+  site_id                      BigInt?
+  site_name                    String?  @db.VarChar(200)
+  provider_id                  BigInt
+  provider_name                String?  @db.VarChar(200)
+  billing_code                 String?  @db.VarChar(200)
+  appointment_status_indicator String?  @db.VarChar(20)
+  appointment_status_name      String?  @db.VarChar(200)
+  is_epc_funded                Int?
+  motor_vehicle_ind            Int?
+  dva_number                   String?  @db.VarChar(200)
+
+  provider    Provider @relation(fields: [provider_id], references: [import_id])
+  condition   Condition @relation(fields: [condition_id], references: [condition_id])
+
+  @@map(name: "appointment_conditions")
+  @@schema("practice")
+}
+
+model Appointment {
+  id                   Int       @id @default(autoincrement())
+  import_id            BigInt
+  appointment_id       BigInt
+  start_datetime       DateTime? @db.Timestamp(6)
+  durations            Int?
+  client_id            BigInt
+  client_name          String?   @db.VarChar(200)
+  client_first_name    String?   @db.VarChar(200)
+  client_last_name     String?   @db.VarChar(200)
+  client_email         String?   @db.VarChar(200)
+  client_mobile        String?   @db.VarChar(200)
+  site_name            String?   @db.VarChar(200)
+  provider_id          BigInt       
+  provider_name        String?   @db.VarChar(200)
+  provider_first_name  String?   @db.VarChar(200)
+  provider_last_name   String?   @db.VarChar(200)
+  provider_phone       String?   @db.VarChar(200)
+  provider_email       String?   @db.VarChar(200)
+  is_first_appointment String?   @db.VarChar(3)
+
+  client   Client @relation(fields: [client_id], references: [import_id])
+  provider Provider @relation(fields: [provider_id], references: [import_id])
+
+  @@map(name: "appointments")
+  @@schema("practice")
+}
+
+model ProviderAppointment {
+  id                        Int       @id @default(autoincrement())
+  import_id                 BigInt
+  title                     String
+  status                    String
+  type                      String
+  description               String?
+  datetime_start            DateTime @db.Timestamp(6)
+  datetime_end              DateTime @db.Timestamp(6)
+  is_all_day                Boolean  @default(false)
+  start_timezone            String         
+  end_timezone              String
+  recurrence_rule           String?
+  recurrence_exception      String?
+  related_id                BigInt
+  recurrence_id             BigInt
+  room_id                   BigInt @default(0)
+  provider_id               BigInt
+  owner_id                  BigInt @default(0)
+  site_id                   BigInt
+  vendor_id                 BigInt
+  deleted                   Int  @default(0)
+
+  business_function_id      Int?
+  business_function_name    String?               // Accounting, Marketing, Customer Success etc
+  business_procedure_id     Int?
+  mindset_name              String?               // DW  PD  FF  AH   
+  process_type              String?               // primary, supporting, management (operational), strategic (executive), unstructured
+  
+  date_parsed               DateTime?  
+  calc_hours_work           Decimal?              // 0.00
+  calc_hourly_rate          Decimal?              // 0.00
+  calc_work_cost            Decimal?              // 0.00
+
+  @@map(name: "provider_appointments")
+  @@schema("practice")
+}
+
+model BusinessEvent {
+  id                      Int       @id @default(autoincrement())
+  status                  String
+  date_of_report          DateTime
+  event_type              String
+  subject                 String?
+  action_to               String?
+  related_contact         String?
+  date_created            DateTime
+  date_due                DateTime?
+  date_completed          DateTime?
+
+  system_user_id          Int?        // map this to the internal user id eventually  
+
+  parsed_function_name    String?     // 1 use regex to iterate to simplify mapping the id  
+  business_function_id    Int?        // 2 use mapping table to find id match
+  business_function_name  String?     // 3 map this after id is mapped
+  
+  business_procedure_id   Int?        // use logic to map event type   
+  mindset_name            String?     // infer from procedure? use logic to map event type
+  process_type            String?     
+  // infer from procedure? primary, supporting, management (operational), strategic (executive), unstructured
+  
+  date_parsed             DateTime? 
+
+  @@map(name: "business_events")
+  @@schema("practice")
+}
+
+model Condition {
+  id                      Int       @id @default(autoincrement())
+  import_id               BigInt
+  condition_id            BigInt       @unique
+  vendor_id               BigInt
+  authorisation_site_id   BigInt?
+  authorisation_site_name String?   @db.VarChar(200)
+  condition_type          String?   @db.VarChar(200)
+  condition_type_name     String?   @db.VarChar(200)
+  is_epc_funded           String?   @db.VarChar(200)
+  provider_id             BigInt
+  provider_name           String?   @db.VarChar(200)
+  claim_no                String?   @db.VarChar(200)
+  referred_by_id          BigInt?
+  referred_by_type        String?   @db.VarChar(200)
+  referred_by_type_name   String?   @db.VarChar(200)
+  external_id             String?   @db.VarChar(200)
+  client_id               BigInt
+  reference_no            String?   @db.VarChar(200)
+  date_created            DateTime? @db.Date
+  date_updated            DateTime? @db.Date
+  date_of_injury          DateTime? @db.Date
+  date_of_referral        DateTime? @db.Date
+  date_referral_expires   DateTime? @db.Date
+  motor_vehicle_ind       String?   @db.VarChar(200)
+  injury_description      String?   @db.VarChar(200)
+  cause_of_injury         String?   @db.Text
+  work_intensity_id       BigInt?
+  work_intensity_name     String?   @db.VarChar(200)
+
+  provider   Provider @relation(fields: [provider_id], references: [import_id])
+
+  problems                ConditionProblem[]
+  discharged              DischargedCondition[]
+  appointments            ConditionAppointment[]
+
+  @@map(name: "conditions")
+  @@schema("practice")
+}
+
+model ConditionProblem {
+  id               Int     @id @default(autoincrement())
+  import_id        BigInt
+  condition_id     BigInt
+  organisation_id  BigInt
+  injury_type_id   BigInt
+  injury_type_name String? @db.VarChar(200)
+  side             String? @db.VarChar(200)
+
+  condition   Condition @relation(fields: [condition_id], references: [condition_id])
+  @@map(name: "condition_injuries")
+  @@schema("practice")
+}
+
+model Assessment {
+  id                      Int       @id @default(autoincrement())
+  import_id               BigInt
+  client_id               BigInt
+  owner_id                BigInt       // conditon or contract id
+  owner_type_id           BigInt       // 1 = condition, 3 = contract
+  owner_type              String    // condition or contract
+  clinician_type_id       BigInt       // 1 ? 
+  clinician_type          String?   // physio?
+  mechanism               String?   @db.Text
+  provisional_diagnosis   String?   @db.Text
+
+  // retrieved_goals_ind     Int
+  deleted_ind             Int   @default(0)
+
+  @@map(name: "assessments")
+  @@schema("practice")
+}
+
+model AssessmentGoal {
+  id                      Int @id @default(autoincrement())
+  import_id               BigInt 
+  vendor_id               BigInt? @default(0)
+  assessment_id           BigInt? @default(0)
+  goal_id                 BigInt? @default(0)
+  goal                    String?
+  goal_name               String?
+  goal_details            String? @db.Text
+  activity_id             BigInt? @default(0)
+  activity_name           String?
+  activity_details        String? @db.Text
+  estimated_treatments    Int @default(0)
+  timeframe               Int? @default(0)               // number of weeks  
+  timeframe_type_id       BigInt? @default(0)
+  timeframe_type_name     String?  
+  notes                   String? @db.Text
+  plan_notes              String? @db.Text
+  mid_notes               String? @db.Text
+  final_notes             String? @db.Text
+  non_completion_notes    String? @db.Text
+  achieved_ind            Int? @default(0)
+  created_date            DateTime
+  start_by_date           DateTime?
+  started_date            DateTime?
+  complete_by_date        DateTime?
+  completed_date          DateTime?
+  deleted_ind             Int @default(0)
+
+  @@map(name: "assessment_goals")
+  @@schema("practice")
+}
+
+model DischargedCondition {
+  id                      Int       @id @default(autoincrement())
+  import_id               BigInt
+  condition_id            BigInt       
+  organisation_id         BigInt
+  vendor_id               BigInt
+  client_id               BigInt
+  client_title            String?   @db.VarChar(255)
+  client_first_name       String?   @db.VarChar(255)
+  client_known_as         String?   @db.VarChar(255)
+  client_last_name        String?   @db.VarChar(255)
+  provider_id             BigInt
+  provider_name           String?   @db.VarChar(255)
+  provider_type           String?   @db.VarChar(255)
+  provider_type_name      String?   @db.VarChar(255)
+  claim_number            String?   @db.VarChar(255)
+  read_code_list          String?   @db.Text 
+  total_appointments      Int
+  total_providers_seen    Int
+  discharged_ind          Int
+  discharge_summary       String?   @db.Text 
+  outcome_id              BigInt
+  outcome_type            String?   @db.VarChar(255)
+  outcome_details         String?   @db.Text 
+  date_of_injury          DateTime? @db.Date
+  date_first_appointment  DateTime? @db.Date
+  date_discharged         DateTime? @db.Date
+  date_for_followup       DateTime? @db.Date
+  date_followup_completed DateTime? @db.Date
+
+  condition   Condition @relation(fields: [condition_id], references: [condition_id])
+
+  @@map(name: "conditions_discharged")
+  @@schema("practice")
+}
+
+model DischargedOutcome {
+  id                            Int       @id @default(autoincrement())
+  import_id                     BigInt
+  created_by_id                 BigInt
+  patient_assessment_id         BigInt
+  patient_assessment_owner_id   BigInt
+  patient_assessment_owner_type String?   @db.VarChar(255)
+  provider_type                 String?   @db.VarChar(255)
+  measure_type                  String?   @db.VarChar(255)
+  measure_details               String?   @db.VarChar(255)
+  val_one                       Int?      @default(0)
+  val_one_measure_date          DateTime? @db.Date
+  val_one_measure_type_name     String?   @db.VarChar(255)
+  val_two                       Int?      @default(0)
+  val_two_measure_date          DateTime? @db.Date
+  val_two_measure_type_name     String?   @db.VarChar(255)
+  val_three                     Int?      @default(0)
+  val_three_measure_date        DateTime? @db.Date
+  val_three_measure_type        String?   @db.VarChar(255)
+  val_three_measure_type_name   String?   @db.VarChar(255)
+  val_four                      Int?      @default(0)
+  val_four_measure_date         DateTime? @db.Date
+  val_four_measure_type         String?   @db.VarChar(255)
+  val_four_measure_type_name    String?   @db.VarChar(255)
+  val_five                      Int?      @default(0)
+  val_five_measure_date         DateTime? @db.Date
+  val_five_measure_type         String?   @db.VarChar(255)
+  val_five_measure_type_name    String?   @db.VarChar(255)
+  val_six                       Int?      @default(0)
+  val_six_measure_date          DateTime? @db.Date
+  val_six_measure_type          String?   @db.VarChar(255)
+  val_six_measure_type_name     String?   @db.VarChar(255)
+  date_created                  DateTime? @db.Date
+  date_updated                  DateTime? @db.Date
+
+  @@map(name: "conditions_discharged_outcomes")
+  @@schema("practice")
+}
+
+model SnapshotIncompleteExam {
+  id                  Int       @id @default(autoincrement())
+  date_report_from    DateTime? @db.Date
+  date_report_to      DateTime? @db.Date
+  report_period       String?   @db.VarChar(20)
+  period_number       Int?
+  import_id           BigInt
+  vendor_id           BigInt
+  site_id             BigInt
+  clinician_id        BigInt
+  clinician_name      String?   @db.VarChar(100)
+  date_exam           DateTime? @db.Date
+  client_name         String?   @db.VarChar(100)
+  claim_no            String?   @db.VarChar(50)
+  condition_type      String?   @db.VarChar(50)
+  condition_type_name String?   @db.VarChar(50)
+  status              String?   @db.VarChar(10)
+  has_exam            String?   @db.VarChar(5)
+  utc_date_report_from  DateTime? @db.Timestamp(6)
+  utc_date_report_to    DateTime? @db.Timestamp(6)
+
+  site   Site @relation(fields: [site_id], references: [import_id])
+
+  @@map(name: "snapshot_incomplete_exams")
+  @@schema("practice")
+}
+
+model RevenueItem {
+  id                    Int       @id @default(autoincrement())
+  item_id               BigInt
+  item_type             Int   
+  item_type_name        String?   @db.VarChar(50)
+  item_details          String?   @db.VarChar(255)
+  debtor_id             BigInt?
+  related_id            BigInt?  
+  debtor_name           String?   @db.VarChar(255)
+  other_details         String?   @db.VarChar(255)
+  product_group_name    String?   @db.VarChar(255)
+  item_site_id          BigInt?
+  site_id               BigInt
+  site_name             String?   @db.VarChar(255)
+  parent_site_name      String?   @db.VarChar(255)
+  vendor_id             BigInt
+  attribute_to_name     String?   @db.VarChar(255)
+  attribute_to_id       BigInt?
+  item_date             DateTime? @db.Date
+  quantity              Int?
+  amount                Float?
+  tax_amount            Float?
+  total_amount          Float?
+  link_to_id            BigInt?
+  link_to_type          String?   @db.VarChar(50)
+  orig_item_site_id     BigInt?
+  date_paid             DateTime? @db.Date
+  pmt_item_id           Int?
+  pmt_item_type         String?   @db.VarChar(50)
+  referrer_type_id      BigInt?
+  referrer_id           BigInt?
+  referrer_name         String?   @db.VarChar(255)
+  invoice_no            String?   @db.VarChar(255)
+  revenue_ledger_id     BigInt?
+  payment_type_id       BigInt?
+  payment_type_name     String?   @db.VarChar(255)
+  direct_deposit_ind    Int?
+  commission_item_id    BigInt?
+  commission_item_type  String?   @db.VarChar(50)
+  revenue_item_id       BigInt?
+  utc_date_report_from  DateTime? @db.Timestamp(6)
+  utc_date_report_to    DateTime? @db.Timestamp(6)
+
+  report_product_ind    Int? @default(0)
+
+  @@map(name: "revenue_items")
+  @@schema("practice")
+}
+
+model MembershipUsage {
+  id                      Int      @id @default(autoincrement())
+  appointment_type        Int    
+  appointment_type_name   String 
+  appointment_id          BigInt
+  client_appointment_id   BigInt
+  appt_date_time          DateTime @db.Timestamp(6)
+  client_membership_id    BigInt
+  membership_price_excl   Float?
+  membership_price_incl   Float?
+  site_id                 BigInt
+  provider_id             BigInt
+  provider_name           String @db.VarChar(50)
+  client_name             String @db.VarChar(100)  
+  membership_type_name    String @db.VarChar(100)
+  restricts_visits        Boolean @default(false)
+  visits_allowed          Int?
+  units_used              Int?
+  units_value_excl_tax    Float?
+  units_value_incl_tax    Float?
+
+  @@map(name: "membership_usage")
+  @@schema("practice")
+}
+
+model SnapshotProviderSaturation {
+  id                    Int       @id @default(autoincrement())
+  report_period         String?   @db.VarChar(20)
+  period_number         Int?
+  date_report_from      DateTime? @db.Date
+  date_report_to        DateTime? @db.Date
+  day_of_week           String?   @db.VarChar(20)
+  provider_id           BigInt
+  provider_name         String?   @db.VarChar(200)
+  site_id               BigInt
+  site_name             String?   @db.VarChar(200)
+  site_availability_dur Decimal?  @db.Decimal
+  no_show_dur           Decimal?  @db.Decimal
+  no_show_count         Decimal?  @db.Decimal
+  in_service_dur        Decimal?  @db.Decimal
+  in_service_count      Decimal?  @db.Decimal
+  prv_dur               Decimal?  @db.Decimal
+  prv_count             Decimal?  @db.Decimal
+  client_dur            Decimal?  @db.Decimal
+  client_count          Decimal?  @db.Decimal
+  class_dur             Decimal?  @db.Decimal
+  class_count           Decimal?  @db.Decimal
+  total_count           Decimal?  @db.Decimal
+  utc_date_report_from  DateTime? @db.Timestamp(6)
+  utc_date_report_to    DateTime? @db.Timestamp(6)
+
+  business_saturation   Decimal?  @db.Decimal         // (billed clinic hours + class hours) / available hours
+  billed_saturation     Decimal?  @db.Decimal         // (billed clinic hours + class hours) / (available hours - in-service hours)
+  clinical_saturation   Decimal?  @db.Decimal         // billed clinic hours / (available hours - in service hours)
+  reprocess_data_ind    Int? @default(0)
+            
+  provider   Provider @relation(fields: [provider_id], references: [import_id])
+  site   Site @relation(fields: [site_id], references: [import_id])
+
+  @@unique([date_report_from, date_report_to, provider_id, site_id, report_period])
+  @@map(name: "snapshot_provider_saturation")
+  @@schema("practice")
+}
+
