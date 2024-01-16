@@ -17,7 +17,7 @@ Games will form the glue that connect people to shape culture.
 - Proof of humanity
 - AI driven strategy
 
-[Marketing Spec]()
+[AI Marketing Agency](https://mm.dreamineering.com/docs/business/experiments/experiment-prettymint/)
 
 ## Best Practice Examples
 
