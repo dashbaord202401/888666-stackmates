@@ -23,6 +23,8 @@ Games will form the glue that connect people to shape culture.
 
 Create a library of examples to establish patterns and contrast pros and cons of different architecture options.
 
+Vercel [Platform](https://github.com/vercel/platforms)
+
 ### Nextjs Patterns
 
 - [T3 Apps](https://mm.dreamineering.com/docs/engineering/software/sdk/nextjs/#t3-apps)
@@ -37,7 +39,7 @@ npx nx serve shadcn-default --port 3001
 
 T3 & Nextjs 14 Data Access
 
-### Rollup / Eth Patterns
+### RaaS / Eth Patterns
 
 Scaffold Eth for quick exploration of ideas.
 

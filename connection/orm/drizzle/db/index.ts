@@ -6,7 +6,7 @@ import postgres from 'postgres';
 // probably an env var
 const connectionString = process.env.SUPABASE_DIRECT_URL ?? '';
 const sql = postgres(connectionString);
-import { user } from '../schema';
+// import { user } from '../schema';
 const db = drizzle(sql);
 
-const allUsers = await db.select().from(user);
+//const allUsers = await db.select().from(user);
